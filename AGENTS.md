@@ -1,0 +1,127 @@
+# AGENTS.md
+
+Instructions for Codex and other filesystem-native agents working in this repository.
+
+## Project Identity
+
+This repository is for Nexus: a tiny standalone world built on the NetHack 5.0.0 engine.
+
+Goal:
+
+> Preserve NetHack systems. Replace NetHack world assumptions.
+
+This is not an IER repository and should not inherit IER governance, vocabulary, release checks, or theory constraints.
+
+## Scope
+
+Keep the initial scope aggressively small:
+
+- one custom world
+- one handcrafted Lua level
+- minimal or no combat
+- calm traversal
+- basic NetHack movement, inventory, objects, creatures, line of sight, persistence, and messages
+
+Do not make a full roguelike.
+Do not make an IER game.
+Do not build a full conversion at the start.
+Do not begin with procedural generation.
+
+## First Milestone
+
+Success condition:
+
+```text
+NetHack 5 launches
+The player starts in a custom Lua level
+Basic movement and rendering work
+The canonical Dungeons of Doom structure is bypassed or replaced
+```
+
+## Architecture Boundary
+
+Prefer changing data/topology before engine surgery:
+
+- start with `dat/dungeon.lua`
+- add one custom Lua level file
+- identify the minimum C changes only if the topology cannot express the tiny world
+- keep branch, quest, ascension, special-case, and endgame systems untouched until they become real blockers
+
+## Operating Rules
+
+- Read startup and dungeon-generation code before editing.
+- Keep diffs minimal and reversible.
+- Preserve upstream NetHack systems unless replacing a world assumption requires otherwise.
+- Avoid unrelated content, balance, item, monster, or UI changes.
+- Use the narrowest build/run target available.
+- Record every intentional divergence from upstream.
+
+## Workflow
+
+Use `_work/` for lightweight coordination. It is not gameplay content and does
+not define player-facing behavior.
+
+Primary workflow files:
+
+- `_work/workflow.md` describes branch, task, Codex, and divergence habits.
+- `_work/tasks.csv` tracks executable tasks.
+- `_work/plans/plans.csv` tracks larger work fronts.
+- `_work/plans/*.md` stores plan context, constraints, and acceptance criteria.
+- `_work/codex-log.md` records concise Codex session summaries when useful.
+- `_work/divergences.md` records intentional upstream NetHack divergences.
+
+Branch rules:
+
+- Treat `nexus` as the integration branch.
+- Do nontrivial work on short branches, such as `work/0002-boot-custom-level`.
+- Do not work directly on upstream branches such as `NetHack-5.0`.
+- Do not import Floating Eye code or gameplay patches. `../nethack` may be used
+  as a workflow reference only.
+
+Codex session rules:
+
+- Check `git status` before editing.
+- State intended files before changing source files.
+- Work with existing user changes; do not revert unrelated changes.
+- At the end of a code-changing session, summarize changed files,
+  verification, blockers, and any needed `_work/divergences.md` update.
+- Add a `_work/codex-log.md` entry when a session changes source files, closes
+  a task or plan, or records findings needed by later sessions.
+
+NetHack local workflow:
+
+- The local substitution prefix is `FLEY`.
+- The local project name is `Nexus`.
+- Use `git nhadd` and `git nhcommit` for commits that touch NetHack source
+  files so NetHack keyword substitution hooks run.
+
+Planning conventions:
+
+- Plan `0001-environment-setup` covers repository, branch, FLEY, and workflow
+  setup.
+- Plan `0002-boot-custom-level` covers the first milestone: booting into one
+  handcrafted Nexus Lua level.
+- Keep the workflow lighter than Halfbaked governance. Nexus should not inherit
+  IER governance, vocabulary, release checks, or theory constraints.
+
+## Suggested First Codex Prompt
+
+```text
+I want to create Nexus, a tiny standalone NetHack 5.0.0 world.
+
+My goal is not to add a branch to the Dungeons of Doom.
+I want to keep the NetHack engine and simulation systems but replace the canonical dungeon structure.
+
+Please inspect the source and identify:
+
+1. where dungeon initialization begins
+2. how dat/dungeon.lua is loaded and translated into internal topology
+3. how special Lua levels are registered and loaded
+4. the smallest data-only change that might boot into one custom level
+5. where C changes become unavoidable, if anywhere
+6. a minimal proof-of-concept plan
+
+Do not design gameplay yet.
+Do not add procedural generation yet.
+Prioritize booting into one handcrafted custom place.
+```
