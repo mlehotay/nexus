@@ -8,3 +8,11 @@
 
 OPTIONS=news,!tutorial,!tips
 OPTIONS=windowtype:tty
+OPTIONS=symset:DECgraphics,number_pad:0
+OPTIONS=color,!use_darkgray,hilite_pet
+OPTIONS=hitpointbar
+OPTIONS=time,showrace,boulder:0
+OPTIONS=hilite_pile,pile_limit:2
+OPTIONS=msg_window:combination
+OPTIONS=suppress_alert:5.0.0
+OPTIONS=toptenwin,disclose:+i+a+v+g+c+o,scores:5t1a

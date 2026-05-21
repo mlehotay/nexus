@@ -129,13 +129,13 @@ commit commands explicit.
 Changed files:
 
 - `AGENTS.md`
-- `doc/nexus-layout.md`
+- `_work/nexus-layout.md`
 - `_work/README.md`
 - `_work/workflow.md`
 - `_work/codex-log.md`
 
-`doc/nexus-layout.md` is now the durable source for repository layout
-conventions. `_work/` remains temporary coordination space only.
+`nexus-layout.md` records repository layout conventions. It was later moved
+into `_work/` while the setup policy remained provisional.
 
 `AGENTS.md` and `_work/workflow.md` now define:
 
@@ -145,3 +145,89 @@ conventions. `_work/` remains temporary coordination space only.
 These commands require workflow maintenance, verification reporting, and
 keyword-aware NetHack commits via `git nhadd` and `git nhcommit` when source,
 data, doc, or build files are involved.
+
+---
+
+# codex-005 - Developer Guide And Keyword Substitution Notes
+
+**Plan:** `0001-environment-setup`
+**Status:** recorded
+**Timestamp:** 2026-05-20 20:45 EDT
+
+## Changes
+
+Added a Nexus developer guide covering repository workflow, file location
+policy, local build orientation, divergence records, and the NetHack
+keyword-substitution system.
+
+Changed files:
+
+- `_work/nexus-dev-guide.md`
+- `_work/nexus-layout.md`
+- `_work/codex-log.md`
+
+The guide records the Nexus convention for NetHack headers: leave untouched
+upstream `$NHDT-...$` headers alone, but convert the first-line header to
+`$FLEY-...$` when a Nexus commit intentionally changes a NetHack-owned file
+handled by `NHSUBST`. New Nexus-owned source files should start with FLEY
+variables and be staged with `git nhadd`.
+
+It also explains the branch workflow: short feature branches start from
+`nexus`, then merge back into `nexus`; they do not branch from the official
+NetHack 5.0.0 tag during ordinary feature work.
+
+---
+
+# codex-006 - Configuration Procedures Plan
+
+**Plan:** `0003-configuration-procedures`
+**Status:** opened
+**Timestamp:** 2026-05-21
+
+## Changes
+
+Left `0001-environment-setup` closed and opened
+`0003-configuration-procedures` for the remaining developer workflow, player
+terminal setup, runtime configuration, and procedure work.
+
+Changed files:
+
+- `_work/plans/plans.csv`
+- `_work/plans/0003-configuration-procedures.md`
+- `_work/workflow.md`
+- `AGENTS.md`
+- `_work/codex-log.md`
+
+Workflow instructions now say plans cannot be marked `done` unless the user
+explicitly asks for that plan to be closed or confirms a proposed closure.
+
+---
+
+# codex-007 - Move Nexus Guides To Work Area
+
+**Plan:** `0003-configuration-procedures`
+**Status:** recorded
+**Timestamp:** 2026-05-21
+
+## Changes
+
+Moved the provisional Nexus guide documents from `doc/` into `_work/` while
+the developer workflow, player terminal setup, and layout policies remain in
+flux. Added the current baseline tty/player options to `sys/unix/nexus.nethackrc`.
+
+Changed files:
+
+- `_work/nexus-dev-guide.md`
+- `_work/nexus-layout.md`
+- `_work/nexus-player-guide.md`
+- `_work/README.md`
+- `_work/plans/0003-configuration-procedures.md`
+- `AGENTS.md`
+- `sys/unix/nexus.nethackrc`
+- `_work/codex-log.md`
+
+Active runtime files, world files, and build inputs still belong in the normal
+NetHack tree. The moved guides are coordination documents for now and may move
+again when the policy settles. The runtime rc now selects tty display behavior,
+DEC graphics, color/status presentation, message behavior, and disclosure/score
+defaults for the Nexus launcher.

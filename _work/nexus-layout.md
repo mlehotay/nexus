@@ -1,11 +1,11 @@
 # Nexus Repository Layout
 
 Nexus-specific files should live in the normal NetHack source tree whenever
-they affect builds, installs, runtime behavior, documentation, or player-facing
-content.
+they affect builds, installs, runtime behavior, or player-facing content.
 
-`_work/` is temporary coordination space only. Do not put active Nexus runtime
-files, world files, build inputs, or player documentation there.
+`_work/` is coordination space. It may hold provisional Nexus workflow/setup
+guides while the project conventions are still being established. Do not put
+active Nexus runtime files, world files, or build inputs there.
 
 ## Durable Nexus Locations
 
@@ -23,10 +23,17 @@ files, world files, build inputs, or player documentation there.
   - Unix build/install profiles.
   - `sys/unix/hints/nexus-local` is the local developer install profile.
 
+- `_work/`
+  - Provisional Nexus workflow/setup guides and coordination notes.
+  - `nexus-dev-guide.md`, `nexus-layout.md`, and `nexus-player-guide.md` live
+    here for now so Nexus setup policy remains encapsulated while it is still
+    changing.
+
 - `doc/`
-  - Durable Nexus documentation and player/developer reference.
-  - Use this for repository layout notes, player-facing rc templates, and
-    explanations that should survive beyond a temporary task.
+  - Durable player/developer reference once a guide is ready to become
+    long-lived project documentation.
+  - Use this later for stable player-facing rc templates or explanations that
+    should survive beyond temporary setup work.
 
 - `src/`, `include/`, `util/`, and other NetHack source directories
   - Engine changes only when data/topology cannot express the Nexus behavior.
@@ -58,13 +65,14 @@ files, world files, build inputs, or player documentation there.
 
 ## Temporary Coordination
 
-Use `_work/` for planning and session coordination only:
+Use `_work/` for planning and session coordination:
 
 - tasks and plan tracking
 - investigation notes
 - Codex session summaries
 - divergence notes before they are promoted into durable documentation
+- provisional Nexus setup guides while policy remains in flux
 
-When a note becomes a build rule, runtime default, player-facing document, or
-source-of-truth convention, move or copy it into the appropriate durable
-location above.
+When a note becomes a build rule, runtime default, stable player-facing
+document, or source-of-truth convention, move or copy it into the appropriate
+durable location above.

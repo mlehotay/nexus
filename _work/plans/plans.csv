@@ -1,3 +1,4 @@
 id,status,priority,branch,notes
 0001-environment-setup,done,P1,nexus,repository root checkout branch setup FLEY NetHack helper setup and lightweight workflow surfaces
 0002-boot-custom-level,todo,P1,work/0002-boot-custom-level,boot NetHack 5.0.0 into one handcrafted Nexus Lua level with minimal upstream divergence
+0003-configuration-procedures,todo,P1,work/0003-configuration-procedures,establish developer workflow player terminal setup runtime configuration and project procedures

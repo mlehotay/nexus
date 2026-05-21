@@ -23,6 +23,10 @@ Plans describe work fronts. Tasks describe executable steps.
 
 - Add a plan when the work has multiple steps, uncertainty, or acceptance
   criteria.
+- Do not close a plan or mark it `done` unless the user explicitly asks for
+  that plan to be closed or confirms a proposed closure. A wrap-up may report
+  that a plan appears complete, but it must leave the plan open without that
+  approval.
 - Add a task for concrete work that can be completed and verified.
 - Keep notes factual. Design intent belongs here until it becomes code or
   player-facing documentation.
@@ -39,8 +43,8 @@ Wrap-up steps:
 
 - check `git status`
 - update `_work/tasks.csv` if task state changed
-- add or update `_work/codex-log.md` if source files changed, a task or plan
-  closed, or later sessions need the findings
+- add or update `_work/codex-log.md` if source files changed, a task closed,
+  a plan closure was explicitly approved, or later sessions need the findings
 - update `_work/divergences.md` if there was an intentional upstream NetHack
   divergence
 - run or report the narrowest useful verification
@@ -48,7 +52,8 @@ Wrap-up steps:
   status, and whether changes remain uncommitted
 
 Use `codex-log.md` for durable session summaries when the work changes source
-files, records findings that future sessions need, or closes a plan/task.
+files, records findings that future sessions need, closes a task, or closes a
+plan with explicit user approval.
 
 When the user says `commit this session`, Codex should perform the wrap-up
 steps first, then commit. Commits that touch NetHack source, data, doc, or build

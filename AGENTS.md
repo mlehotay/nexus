@@ -47,9 +47,10 @@ Prefer changing data/topology before engine surgery:
 - identify the minimum C changes only if the topology cannot express the tiny world
 - keep branch, quest, ascension, special-case, and endgame systems untouched until they become real blockers
 
-Use `doc/nexus-layout.md` for the durable Nexus directory conventions. `_work/`
-is temporary coordination space only; do not put active Nexus runtime files,
-world files, build inputs, or player-facing documentation there.
+Use `_work/nexus-layout.md` for the current Nexus directory conventions.
+`_work/` may hold provisional Nexus workflow and setup guides while those
+policies are still being established. Do not put active Nexus runtime files,
+world files, or build inputs there.
 
 ## Operating Rules
 
@@ -74,9 +75,9 @@ Primary workflow files:
 - `_work/codex-log.md` records concise Codex session summaries when useful.
 - `_work/divergences.md` records intentional upstream NetHack divergences.
 
-Durable Nexus-specific files belong in the normal NetHack tree, especially
-`dat/`, `sys/unix/`, `sys/unix/hints/`, and `doc/`. See
-`doc/nexus-layout.md`.
+Durable Nexus runtime and build files belong in the normal NetHack tree,
+especially `dat/`, `sys/unix/`, and `sys/unix/hints/`. Provisional Nexus
+workflow/setup guides currently live in `_work/`; see `_work/nexus-layout.md`.
 
 Branch rules:
 
@@ -92,7 +93,8 @@ Codex session rules:
 - State intended files before changing source files.
 - Work with existing user changes; do not revert unrelated changes.
 - Add a `_work/codex-log.md` entry when a session changes source files, closes
-  a task or plan, or records findings needed by later sessions.
+  a task, closes a plan with explicit user approval, or records findings needed
+  by later sessions.
 - At the end of a code-changing session, summarize changed files,
   verification, blockers, and any needed `_work/divergences.md` update.
 
@@ -103,7 +105,8 @@ Session wrap-up command:
 - Check `git status`.
 - Update `_work/tasks.csv` if task state changed.
 - Add or update `_work/codex-log.md` if the session changed source files,
-  closed a task or plan, or recorded findings needed by later sessions.
+  closed a task, closed a plan with explicit user approval, or recorded
+  findings needed by later sessions.
 - Update `_work/divergences.md` if there was an intentional upstream NetHack
   divergence.
 - Run or report the narrowest useful verification.
@@ -133,6 +136,12 @@ Planning conventions:
   setup.
 - Plan `0002-boot-custom-level` covers the first milestone: booting into one
   handcrafted Nexus Lua level.
+- Plan `0003-configuration-procedures` covers developer workflow, player
+  terminal setup, runtime configuration conventions, and project procedures.
+- Do not close a plan or mark it `done` unless the user explicitly asks for
+  that plan to be closed or confirms a proposed closure. During wrap-up, report
+  that a plan appears complete if appropriate, but leave it open without that
+  approval.
 - Keep the workflow lighter than Halfbaked governance. Nexus should not inherit
   IER governance, vocabulary, release checks, or theory constraints.
 

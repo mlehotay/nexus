@@ -28,6 +28,9 @@ Use it to answer:
 - `workflow.md` describes the working process.
 - `install.md` describes the local multi-variant install and launcher
   convention.
+- `nexus-dev-guide.md`, `nexus-layout.md`, and `nexus-player-guide.md` are
+  provisional Nexus workflow/setup guides while these policies are still being
+  established.
 
 ## Rules
 
@@ -35,6 +38,6 @@ Use it to answer:
 - Do work on short branches when a change is more than a quick note.
 - Record C changes and topology assumptions in `divergences.md`.
 - Prefer data/topology changes before engine surgery.
-- Put durable Nexus files in the normal NetHack tree; see
-  `doc/nexus-layout.md`.
+- Put active Nexus runtime files, world files, and build inputs in the normal
+  NetHack tree; see `nexus-layout.md`.
 - Keep this directory lightweight; revise the workflow when it becomes friction.
