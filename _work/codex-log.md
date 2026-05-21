@@ -231,3 +231,40 @@ NetHack tree. The moved guides are coordination documents for now and may move
 again when the policy settles. The runtime rc now selects tty display behavior,
 DEC graphics, color/status presentation, message behavior, and disclosure/score
 defaults for the Nexus launcher.
+
+---
+
+# codex-008 - Engine Assessment And NLE5 Alignment
+
+**Plan:** `0002-boot-custom-level`
+**Status:** recorded
+**Timestamp:** 2026-05-21
+
+## Changes
+
+Added a Nexus engine assessment note summarizing the relevant NetHack 5 startup
+and topology findings from the initial project discussion.
+
+Changed Nexus files:
+
+- `_work/nethack-engine-assessment.md`
+- `_work/codex-log.md`
+
+The assessment records the first milestone, the data-first strategy, the
+startup path through `newgame()`, `init_dungeons()`, `dat/dungeon.lua`,
+`mklev()`, and `load_special()`, likely hardwired canonical dungeon
+assumptions, and the recommendation to continue plan
+`0002-boot-custom-level` by trying to place a custom Lua level at dungeon 0,
+level 1 before making C changes.
+
+Also updated the parallel `nle5` project for alignment:
+
+- `/home/mlehotay/projects/nle5/_work/README.md`
+- `/home/mlehotay/projects/nle5/_work/nexus-alignment.md`
+- `/home/mlehotay/projects/nle5/AGENTS.md`
+- `/home/mlehotay/projects/nle5/nle5-codex-copypasta.md`
+
+Those NLE5 notes keep the dependency direction explicit: NLE5 may later point
+at Nexus as a target engine, but Nexus should not depend on NLE5, and NLE5
+benchmark or agent concerns should not drive Nexus before the custom
+human-playable level boots.

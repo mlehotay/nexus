@@ -21,6 +21,8 @@ Use it to answer:
 ## Files
 
 - `tasks.csv` tracks small executable tasks.
+- `todo.md` stores task descriptions when a task needs more context than fits
+  in `tasks.csv`, but does not need a plan.
 - `plans/plans.csv` tracks larger work fronts.
 - `plans/*.md` stores context, constraints, and acceptance criteria for a plan.
 - `codex-log.md` records concise session summaries when useful.

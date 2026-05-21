@@ -40,6 +40,11 @@ Out of scope:
   without depending on inspecting Windows configuration
 - workflow instructions say plans cannot be closed without explicit user
   approval
+- Windows console fullscreen setup has a documented working approach for
+  preserving 80x25 geometry while making the visible font/cell size larger; the
+  current fullscreen approximation changes geometry and is not acceptable
+- Windows Console Host glyph rendering has a documented working approach for
+  avoiding tofu boxes in the chosen NetHack symbol set and VGA-style font
 - Nexus runtime configuration policy is documented clearly enough to decide
   whether a setting belongs in the repo baseline or in a personal player rc
 - any intentional upstream divergence discovered during this plan is recorded

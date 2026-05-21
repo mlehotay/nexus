@@ -48,6 +48,17 @@ Branch from the upstream tag only when you are deliberately creating a new
 integration line from upstream NetHack. That is not the ordinary feature
 workflow.
 
+To see which files currently differ from the original NetHack 5.0.0 release,
+use:
+
+```sh
+git diff --name-only NetHack-5.0.0_Release..HEAD
+```
+
+This is useful for orientation before upstream merges, divergence reviews, or
+cleanup passes. It lists files changed on the current branch since the release
+tag; it does not explain whether each change is intentional or still needed.
+
 To start a feature branch:
 
 ```sh
