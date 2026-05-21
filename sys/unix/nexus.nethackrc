@@ -1,0 +1,10 @@
+# Nexus local run-time options.
+#
+# This file is installed by sys/unix/hints/nexus-local and used by the
+# ~/.local/bin/nexus launcher via NETHACKOPTIONS=@.../nexus.nethackrc.
+#
+# Keep this intentionally small. Personal NetHack settings belong in a
+# personal rc file for another launcher, not in Nexus' baseline.
+
+OPTIONS=news,!tutorial,!tips
+OPTIONS=windowtype:tty

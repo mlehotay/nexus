@@ -19,8 +19,18 @@ Entry shape:
 - Verification:
 ```
 
-## Current State
+## 2026-05-20 - Local Nexus Runtime Isolation
 
-No source-level divergences have been introduced yet. Nexus is currently based
-on the official NetHack `NetHack-5.0.0_Release` tag with local workflow files
-added under `_work/`.
+- Plan: `0001-environment-setup`
+- Files: `sys/unix/hints/nexus-local`, `sys/unix/nexus.nethackrc`
+- Upstream assumption: a local Unix install may use the default user rc search
+  path and the compile-time default compression command.
+- Nexus change: the `nexus` launcher exports `NETHACKOPTIONS` to an installed
+  Nexus rc file, and `nexus-local` compiles save compression as `/bin/gzip`
+  with `.gz` files.
+- Reason: this machine has multiple NetHack derivatives and a shared
+  `~/.nethackrc`; Nexus must not inherit unrelated fruit, role, UI, or window
+  settings. `/usr/bin/compress` is not available on this system.
+- Verification: `make all`, `make install`, `nexus --version`, a
+  pseudo-terminal launch to the NetHack 5.0.0 character prompt, and a
+  throwaway `codextest` save file written as `1000codextest.gz`.

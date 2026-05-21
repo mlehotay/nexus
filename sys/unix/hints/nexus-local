@@ -1,0 +1,63 @@
+#
+# NetHack 5.0  nexus-local
+#
+# Hints file for a local Nexus developer install.
+#
+# This is not a new system port or window port. It is a Unix install profile
+# for the Nexus variant, keeping its playground separate from other local
+# NetHack derivatives.
+#
+#-PRE
+
+PREFIX=$(wildcard ~)/games/nethack/nexus
+HACKDIR=$(PREFIX)/games/lib/$(GAME)dir
+SHELLDIR=$(PREFIX)/games
+INSTDIR=$(HACKDIR)
+VARDIR=$(HACKDIR)
+
+CFLAGS=-g -I../include \
+	-DHACKDIR=\"$(HACKDIR)\" \
+	-DSYSCF -DSYSCF_FILE=\"$(HACKDIR)/sysconf\" -DSECURE \
+	-DCONFIG_ERROR_SECURE=FALSE \
+	-DCOMPRESS=\"/bin/gzip\" -DCOMPRESS_EXTENSION=\".gz\"
+
+# When building liblua.a, avoid warning that use of tmpnam() should be
+# replaced by mkstemp(); the lua code doesn't use nethack's config.h so this
+# needs to be passed via make rather than defined in unixconf.h.
+SYSCFLAGS=-DLUA_USE_POSIX
+
+LINK=$(CC)
+
+WINSRC = $(WINTTYSRC)
+WINOBJ = $(WINTTYOBJ)
+WINLIB = $(WINTTYLIB)
+
+WINTTYLIB=-lncurses -ltinfo
+
+CHOWN=true
+CHGRP=true
+
+VARDIRPERM = 0755
+VARFILEPERM = 0600
+GAMEPERM = 0755
+
+NEXUSRCCREATE = cp sys/unix/nexus.nethackrc $(INSTDIR)/nexus.nethackrc
+SYSCONFCREATE = cp sys/unix/sysconf $(INSTDIR)/sysconf
+SYSCONFINSTALL = $(SYSCONFCREATE) && \
+	 $(CHOWN) $(GAMEUID) $(INSTDIR)/sysconf && \
+	 $(CHGRP) $(GAMEGRP) $(INSTDIR)/sysconf && \
+	 chmod $(VARFILEPERM) $(INSTDIR)/sysconf && \
+	 $(NEXUSRCCREATE) && \
+	 $(CHOWN) $(GAMEUID) $(INSTDIR)/nexus.nethackrc && \
+	 $(CHGRP) $(GAMEGRP) $(INSTDIR)/nexus.nethackrc && \
+	 chmod $(FILEPERM) $(INSTDIR)/nexus.nethackrc;
+SYSCONFENSURE = (if ! test -f $(INSTDIR)/sysconf ; then \
+	 $(SYSCONFCREATE) && \
+	 $(CHOWN) $(GAMEUID) $(INSTDIR)/sysconf && \
+	 $(CHGRP) $(GAMEGRP) $(INSTDIR)/sysconf && \
+	 chmod $(VARFILEPERM) $(INSTDIR)/sysconf; fi ); \
+	 if ! test -f $(INSTDIR)/nexus.nethackrc ; then \
+	 $(NEXUSRCCREATE) && \
+	 $(CHOWN) $(GAMEUID) $(INSTDIR)/nexus.nethackrc && \
+	 $(CHGRP) $(GAMEGRP) $(INSTDIR)/nexus.nethackrc && \
+	 chmod $(FILEPERM) $(INSTDIR)/nexus.nethackrc; fi

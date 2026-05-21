@@ -32,15 +32,35 @@ Plans describe work fronts. Tasks describe executable steps.
 At the start of a code-changing session, Codex should check `git status` and
 state the intended files before editing.
 
-At the end of a session, Codex should report:
+When the user says `wrap up`, `finish the session`, or equivalent, Codex should
+close the session by doing the workflow maintenance, not just summarizing.
 
-- files changed
-- verification performed
-- blockers or follow-up tasks
-- whether `divergences.md` needs an entry
+Wrap-up steps:
+
+- check `git status`
+- update `_work/tasks.csv` if task state changed
+- add or update `_work/codex-log.md` if source files changed, a task or plan
+  closed, or later sessions need the findings
+- update `_work/divergences.md` if there was an intentional upstream NetHack
+  divergence
+- run or report the narrowest useful verification
+- report files changed, verification, blockers or follow-up tasks, divergence
+  status, and whether changes remain uncommitted
 
 Use `codex-log.md` for durable session summaries when the work changes source
 files, records findings that future sessions need, or closes a plan/task.
+
+When the user says `commit this session`, Codex should perform the wrap-up
+steps first, then commit. Commits that touch NetHack source, data, doc, or build
+files should use NetHack's keyword-aware helpers:
+
+```sh
+git nhadd <paths>
+git nhcommit
+```
+
+Use plain `git add` only for files that should not go through NetHack keyword
+substitution. Do not commit unless the user explicitly asks for a commit.
 
 ## NetHack Setup
 
@@ -52,6 +72,10 @@ git nhcommit
 ```
 
 The local substitution prefix is `FLEY`; the local project name is `Nexus`.
+
+Use `sys/unix/hints/nexus-local` for local Unix builds. It installs Nexus under
+`~/games/nethack/nexus/` and keeps the launcher name `nexus` separate from any
+other local `nethack` command.
 
 ## Divergences
 

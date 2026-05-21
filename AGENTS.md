@@ -47,6 +47,10 @@ Prefer changing data/topology before engine surgery:
 - identify the minimum C changes only if the topology cannot express the tiny world
 - keep branch, quest, ascension, special-case, and endgame systems untouched until they become real blockers
 
+Use `doc/nexus-layout.md` for the durable Nexus directory conventions. `_work/`
+is temporary coordination space only; do not put active Nexus runtime files,
+world files, build inputs, or player-facing documentation there.
+
 ## Operating Rules
 
 - Read startup and dungeon-generation code before editing.
@@ -70,6 +74,10 @@ Primary workflow files:
 - `_work/codex-log.md` records concise Codex session summaries when useful.
 - `_work/divergences.md` records intentional upstream NetHack divergences.
 
+Durable Nexus-specific files belong in the normal NetHack tree, especially
+`dat/`, `sys/unix/`, `sys/unix/hints/`, and `doc/`. See
+`doc/nexus-layout.md`.
+
 Branch rules:
 
 - Treat `nexus` as the integration branch.
@@ -83,10 +91,34 @@ Codex session rules:
 - Check `git status` before editing.
 - State intended files before changing source files.
 - Work with existing user changes; do not revert unrelated changes.
-- At the end of a code-changing session, summarize changed files,
-  verification, blockers, and any needed `_work/divergences.md` update.
 - Add a `_work/codex-log.md` entry when a session changes source files, closes
   a task or plan, or records findings needed by later sessions.
+- At the end of a code-changing session, summarize changed files,
+  verification, blockers, and any needed `_work/divergences.md` update.
+
+Session wrap-up command:
+
+- If the user says `wrap up`, `finish the session`, or equivalent, do the
+  workflow closeout without waiting for another prompt.
+- Check `git status`.
+- Update `_work/tasks.csv` if task state changed.
+- Add or update `_work/codex-log.md` if the session changed source files,
+  closed a task or plan, or recorded findings needed by later sessions.
+- Update `_work/divergences.md` if there was an intentional upstream NetHack
+  divergence.
+- Run or report the narrowest useful verification.
+- Summarize changed files, verification, blockers, and whether changes remain
+  uncommitted.
+
+Commit command:
+
+- If the user says `commit this session`, first perform the wrap-up steps.
+- Stage files with `git nhadd` when the commit touches NetHack source, data,
+  doc, or build files, so NetHack keyword substitution hooks run.
+- Use `git add` only for files that should not go through NetHack keyword
+  substitution.
+- Use `git nhcommit` for the commit.
+- Do not commit unless the user explicitly asks for a commit.
 
 NetHack local workflow:
 
