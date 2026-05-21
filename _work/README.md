@@ -25,6 +25,7 @@ Use it to answer:
   in `tasks.csv`, but does not need a plan.
 - `plans/plans.csv` tracks larger work fronts.
 - `plans/*.md` stores context, constraints, and acceptance criteria for a plan.
+- `architecture/` stores source-grounded architecture reports and summaries.
 - `codex-log.md` records concise session summaries when useful.
 - `divergences.md` records intentional departures from upstream NetHack.
 - `workflow.md` describes the working process.

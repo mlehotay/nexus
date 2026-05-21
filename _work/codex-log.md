@@ -268,3 +268,158 @@ Those NLE5 notes keep the dependency direction explicit: NLE5 may later point
 at Nexus as a target engine, but Nexus should not depend on NLE5, and NLE5
 benchmark or agent concerns should not drive Nexus before the custom
 human-playable level boots.
+
+---
+
+# codex-009 - Vanilla NetHack Architecture Reference
+
+**Plan:** `0004-vanilla-nethack-architecture`
+**Status:** recorded
+**Timestamp:** 2026-05-21
+
+## Changes
+
+Started plan `0004` and created the initial vanilla NetHack 5 architecture
+reference.
+
+Changed files:
+
+- `_work/architecture/vanilla-nethack-architecture.md`
+- `_work/plans/0004-vanilla-nethack-architecture.md`
+- `_work/plans/plans.csv`
+- `_work/tasks.csv`
+- `_work/codex-log.md`
+
+The new reference describes startup, new-game initialization, the turn loop,
+global state, dungeon topology, `dat/dungeon.lua`, special Lua levels, object
+and monster identity tables, Quest/Sokoban/endgame coupling, save/restore
+boundaries, Lua boundaries, and architecture constraints for Nexus world
+replacement. Plan `0004` remains open and marked `doing`; task `task-013` is
+closed for the initial document pass.
+
+---
+
+# codex-010 - Build Configuration Resource Report
+
+**Plan:** `0004-vanilla-nethack-architecture`
+**Status:** recorded
+**Timestamp:** 2026-05-21
+
+## Changes
+
+Added a companion architecture report for conditional compilation, DLB,
+SYSCF/sysconf, and nearby build/resource topics.
+
+Changed files:
+
+- `_work/architecture/nethack-build-config-resource-architecture.md`
+- `_work/tasks.csv`
+- `_work/codex-log.md`
+
+The report records the distinction between compile-time feature macros, DLB
+resource packaging, SYSCF local site policy, generated build surfaces, and
+runtime/player configuration. It also records Nexus guidance to keep early
+developer builds non-DLB, use `sys/unix/hints/nexus-local` for local build
+policy, avoid sysconf as world data, and avoid new compile-time feature macros
+unless they are truly required.
+
+---
+
+# codex-011 - System And Window Port Report
+
+**Plan:** `0004-vanilla-nethack-architecture`
+**Status:** recorded
+**Timestamp:** 2026-05-21
+
+## Changes
+
+Added a companion architecture report for system ports, window ports, shim,
+WASM/libnh, and WINCHAIN.
+
+Changed files:
+
+- `_work/architecture/nethack-system-window-port-architecture.md`
+- `_work/tasks.csv`
+- `_work/codex-log.md`
+
+The report records the boundary between system ports and window ports, the
+`windowprocs` vtable model, compile-time versus runtime window selection,
+`win/shim/winshim.c` as a callback bridge for libnh/WASM, and WINCHAIN as a
+window-call middleware mechanism. It recommends keeping Nexus on the existing
+Unix + tty path until the native custom world milestone is working.
+
+---
+
+# codex-012 - Save And Bones Architecture Report
+
+**Plan:** `0004-vanilla-nethack-architecture`
+**Status:** recorded
+**Timestamp:** 2026-05-21
+
+## Changes
+
+Added a companion architecture report for savefiles, level files, bones files,
+serialization formats, Lua saved state, and Nexus scope boundaries.
+
+Changed files:
+
+- `_work/architecture/nethack-save-bones-architecture.md`
+- `_work/tasks.csv`
+- `_work/codex-log.md`
+
+The report records that NetHack 5 has an `NHFILE` savefile abstraction and
+field-level/export-ascii machinery, but ordinary gameplay saves and bones in
+this tree still use the historical binary struct-level format. It also records
+how global game state, level-local state, bones transfer state, and Lua
+`nh_lua_variables` persistence should inform future Nexus module boundaries.
+
+---
+
+# codex-013 - Architecture Reports Directory
+
+**Plan:** `0004-vanilla-nethack-architecture`
+**Status:** recorded
+**Timestamp:** 2026-05-21
+
+## Changes
+
+Moved the vanilla NetHack architecture reports into `_work/architecture/` and
+added a short directory README with an executive summary.
+
+Changed files:
+
+- `_work/architecture/README.md`
+- `_work/architecture/vanilla-nethack-architecture.md`
+- `_work/architecture/nethack-build-config-resource-architecture.md`
+- `_work/architecture/nethack-system-window-port-architecture.md`
+- `_work/architecture/nethack-save-bones-architecture.md`
+- `_work/plans/0004-vanilla-nethack-architecture.md`
+- `_work/plans/0005-nexus-architecture.md`
+- `_work/README.md`
+- `_work/codex-log.md`
+
+The move keeps `_work/` readable while preserving plan `0004` as the active
+source-grounded vanilla architecture work front.
+
+---
+
+# codex-014 - Close Vanilla Architecture Plan
+
+**Plan:** `0004-vanilla-nethack-architecture`
+**Status:** closed
+**Timestamp:** 2026-05-21
+
+## Changes
+
+Closed plan `0004` with explicit user approval.
+
+Changed files:
+
+- `_work/plans/0004-vanilla-nethack-architecture.md`
+- `_work/plans/plans.csv`
+- `_work/codex-log.md`
+
+Plan `0004` is complete. The source-grounded vanilla architecture materials now
+live under `_work/architecture/` and cover runtime architecture, build/resource
+configuration, system/window ports, and save/bones persistence boundaries. No
+runtime source, data, or build behavior changed.

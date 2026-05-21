@@ -42,7 +42,7 @@ Out of scope:
 
 ## Deliverable
 
-Create `_work/vanilla-nethack-architecture.md`.
+Create `_work/architecture/vanilla-nethack-architecture.md`.
 
 The document should be factual and source-grounded. It should describe the
 architecture in layers or subsystems, but only where those layers are supported
@@ -103,7 +103,8 @@ Suggested sections:
 
 ## Acceptance Criteria
 
-- `_work/vanilla-nethack-architecture.md` exists and is source-grounded
+- `_work/architecture/vanilla-nethack-architecture.md` exists and is
+  source-grounded
 - the document explains startup, topology, level loading, object/monster data,
   branch rules, and save/restore boundaries at engineering depth
 - claims are tied to specific files or structs where practical
@@ -113,4 +114,4 @@ Suggested sections:
 
 ## Status
 
-Todo.
+Done.

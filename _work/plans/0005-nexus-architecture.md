@@ -176,7 +176,7 @@ runtime code depend on a single monolithic story file.
 ## Acceptance Criteria
 
 - architecture decisions are grounded in
-  `_work/vanilla-nethack-architecture.md`
+  `_work/architecture/vanilla-nethack-architecture.md`
 - architecture notes identify the preserved C engine boundary
 - topology, dungeon logic, content data, and lore layers have clear
   responsibilities

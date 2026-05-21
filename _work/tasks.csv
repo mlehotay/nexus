@@ -11,3 +11,7 @@ task-004,todo,boot-custom-level,P1,work/0002-boot-custom-level,,inspect startup 
 task-005,todo,boot-custom-level,P1,work/0002-boot-custom-level,task-004,add minimal Nexus Lua level file
 task-006,todo,boot-custom-level,P1,work/0002-boot-custom-level,task-004,identify smallest dungeon.lua topology change for booting into Nexus
 task-007,todo,boot-custom-level,P1,work/0002-boot-custom-level,task-005|task-006,build or run narrow verification target
+task-013,done,vanilla-nethack-architecture,P1,work/0004-vanilla-nethack-architecture,,create initial source-grounded vanilla NetHack 5 architecture reference
+task-014,done,vanilla-nethack-architecture,P1,work/0004-vanilla-nethack-architecture,task-013,document conditional compilation DLB SYSCF and nearby build/resource architecture
+task-015,done,vanilla-nethack-architecture,P1,work/0004-vanilla-nethack-architecture,task-013,document system ports window ports shim WASM and WINCHAIN architecture
+task-016,done,vanilla-nethack-architecture,P1,work/0004-vanilla-nethack-architecture,task-013,document savefiles bonesfiles serialization Lua saved state and scope boundaries
