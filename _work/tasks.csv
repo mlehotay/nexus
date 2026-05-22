@@ -14,4 +14,5 @@ task-007,todo,boot-custom-level,P1,work/0002-boot-custom-level,task-005|task-006
 task-013,done,vanilla-nethack-architecture,P1,work/0004-vanilla-nethack-architecture,,create initial source-grounded vanilla NetHack 5 architecture reference
 task-014,done,vanilla-nethack-architecture,P1,work/0004-vanilla-nethack-architecture,task-013,document conditional compilation DLB SYSCF and nearby build/resource architecture
 task-015,done,vanilla-nethack-architecture,P1,work/0004-vanilla-nethack-architecture,task-013,document system ports window ports shim WASM and WINCHAIN architecture
-task-016,done,vanilla-nethack-architecture,P1,work/0004-vanilla-nethack-architecture,task-013,document savefiles bonesfiles serialization Lua saved state and scope boundaries
+task-016,done,vanilla-nethack-architecture,P1,work/0004-vanilla-nethack-architecture,task-013,document savefiles bonesfiles serialization Lua saved state and persistence scopes
+task-017,done,vanilla-nethack-architecture,P2,nexus,task-013,document compilation cross-compilation and build variability architecture

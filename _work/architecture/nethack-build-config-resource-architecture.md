@@ -310,7 +310,7 @@ which interface Nexus targets first.
 
 Lua sandboxing:
 
-Lua is both a data authoring language and a runtime embedding boundary.
+Lua is both a data authoring language and a runtime embedding interface.
 `NHL_SANDBOX` gates parts of `src/nhlua.c`; Lua's own platform flags are passed
 through `SYSCFLAGS`. Nexus should treat Lua enablement, sandboxing, and helper
 library exposure as engine policy, while treating Lua dungeon and level files

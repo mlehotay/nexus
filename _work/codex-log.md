@@ -293,9 +293,9 @@ Changed files:
 The new reference describes startup, new-game initialization, the turn loop,
 global state, dungeon topology, `dat/dungeon.lua`, special Lua levels, object
 and monster identity tables, Quest/Sokoban/endgame coupling, save/restore
-boundaries, Lua boundaries, and architecture constraints for Nexus world
-replacement. Plan `0004` remains open and marked `doing`; task `task-013` is
-closed for the initial document pass.
+save/restore responsibilities, Lua interfaces, and architecture constraints for
+Nexus world replacement. Plan `0004` remains open and marked `doing`; task
+`task-013` is closed for the initial document pass.
 
 ---
 
@@ -342,7 +342,7 @@ Changed files:
 - `_work/tasks.csv`
 - `_work/codex-log.md`
 
-The report records the boundary between system ports and window ports, the
+The report records the distinction between system ports and window ports, the
 `windowprocs` vtable model, compile-time versus runtime window selection,
 `win/shim/winshim.c` as a callback bridge for libnh/WASM, and WINCHAIN as a
 window-call middleware mechanism. It recommends keeping Nexus on the existing
@@ -359,7 +359,7 @@ Unix + tty path until the native custom world milestone is working.
 ## Changes
 
 Added a companion architecture report for savefiles, level files, bones files,
-serialization formats, Lua saved state, and Nexus scope boundaries.
+serialization formats, Lua saved state, and Nexus persistence scopes.
 
 Changed files:
 
@@ -371,7 +371,7 @@ The report records that NetHack 5 has an `NHFILE` savefile abstraction and
 field-level/export-ascii machinery, but ordinary gameplay saves and bones in
 this tree still use the historical binary struct-level format. It also records
 how global game state, level-local state, bones transfer state, and Lua
-`nh_lua_variables` persistence should inform future Nexus module boundaries.
+`nh_lua_variables` persistence should inform future Nexus module responsibilities.
 
 ---
 
@@ -421,5 +421,64 @@ Changed files:
 
 Plan `0004` is complete. The source-grounded vanilla architecture materials now
 live under `_work/architecture/` and cover runtime architecture, build/resource
-configuration, system/window ports, and save/bones persistence boundaries. No
+configuration, system/window ports, and save/bones persistence scopes. No
 runtime source, data, or build behavior changed.
+
+---
+
+# codex-015 - Compilation And Cross-Compile Architecture Report
+
+**Plan:** `0004-vanilla-nethack-architecture`
+**Status:** recorded after plan closure
+**Timestamp:** 2026-05-21
+
+## Changes
+
+Added an additional vanilla architecture report covering NetHack 5 compilation,
+cross-compilation, host-vs-target build separation, hints, generated artifacts,
+DLB/SYSCF packaging, and how build variability contains platform and window
+port choices.
+
+Changed files:
+
+- `_work/architecture/nethack-compilation-cross-architecture.md`
+- `_work/architecture/README.md`
+- `_work/tasks.csv`
+- `_work/codex-log.md`
+
+The report records that NetHack 5's Lua dungeon, level, and quest text shift is
+also a cross-compilation architecture change: it removes target-shaped
+build-time generated dungeon/level/quest artifacts and leaves target-specific
+work concentrated in `TARGET_*` compilation, selected system/window sources,
+runtime data packaging, and target package rules. No runtime source, data, or
+build behavior changed.
+
+---
+
+# codex-016 - Clarify Architecture Terminology
+
+**Plan:** `0004-vanilla-nethack-architecture`
+**Status:** recorded after plan closure
+**Timestamp:** 2026-05-21
+
+## Changes
+
+Replaced the unclear architecture term across `_work` architecture and planning
+docs with more specific language such as interface, responsibility, scope,
+separation, compatibility, and control point.
+
+Changed files:
+
+- `_work/architecture/README.md`
+- `_work/architecture/vanilla-nethack-architecture.md`
+- `_work/architecture/nethack-build-config-resource-architecture.md`
+- `_work/architecture/nethack-system-window-port-architecture.md`
+- `_work/architecture/nethack-save-bones-architecture.md`
+- `_work/architecture/nethack-compilation-cross-architecture.md`
+- `_work/plans/0004-vanilla-nethack-architecture.md`
+- `_work/plans/0005-nexus-architecture.md`
+- `_work/nethack-engine-assessment.md`
+- `_work/tasks.csv`
+- `_work/codex-log.md`
+
+No runtime source, data, or build behavior changed.

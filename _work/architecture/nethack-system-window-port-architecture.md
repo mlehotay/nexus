@@ -23,7 +23,7 @@ Window ports adapt NetHack to a display/input environment: map rendering,
 message windows, menus, status, text windows, prompts, glyph drawing, keyboard
 and mouse input, colors, and window capabilities.
 
-The boundary is practical rather than pure. Unix startup calls the window
+The separation is practical rather than pure. Unix startup calls the window
 selection machinery. Window ports sometimes need system-port helpers for tty
 state or files. But the main interface is clear:
 
@@ -350,7 +350,7 @@ Avoid:
    callback API first instead of creating a new window port?
 4. Does the shim API expose enough structured glyph/status/menu information for
    a future Nexus-specific web UI, or would it need a narrower higher-level API?
-5. Should Nexus record a firm boundary that system/window ports must not carry
+5. Should Nexus record a firm rule that system/window ports must not carry
    lore, branch rules, or world topology?
 6. Should the vanilla architecture plan include a small appendix listing which
    game core modules call `windowprocs` directly versus using wrapper helpers?

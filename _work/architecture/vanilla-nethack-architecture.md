@@ -35,10 +35,10 @@ Vanilla NetHack 5.0.0 has these major architectural surfaces:
 - save/restore code that serializes both game state and level state through
   explicit struct serializers
 
-The architecture is global-state oriented. Module boundaries are mostly file
-and convention boundaries, not strict ownership boundaries. Subsystems call
-across each other through globals such as `u`, `svd`, `svl`, `svm`, `svc`,
-`svq`, `svs`, and `program_state`.
+The architecture is global-state oriented. Modules are separated mostly by
+files and conventions, not by strict ownership rules. Subsystems call across
+each other through globals such as `u`, `svd`, `svl`, `svm`, `svc`, `svq`,
+`svs`, and `program_state`.
 
 ## Process Startup
 
@@ -561,7 +561,7 @@ integer ids, enum values, array indices, and serialized struct layouts. Changing
 object or monster identity tables, dungeon topology representation, or struct
 layouts is therefore a save-format decision, not just a data authoring decision.
 
-## Lua Boundaries
+## Lua Interfaces
 
 NetHack 5 has two relevant Lua surfaces:
 
@@ -619,8 +619,8 @@ Immediate implications:
   patch the C code that assumes them.
 - Custom item and monster data should not move to Lua until the object and
   monster identity/save constraints are explicitly designed.
-- Branch-local logic needs a real module boundary because vanilla branch rules
-  are scattered through global gameplay code.
+- Branch-local logic needs a clear module interface because vanilla branch
+  rules are scattered through global gameplay code.
 - Sokoban is a good case study for branch logic, but not a clean plug-in model.
 - Quest and endgame systems should be left inert unless they block the first
   boot milestone.

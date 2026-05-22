@@ -6,7 +6,7 @@ This note captures the relevant Nexus context from the initial project
 discussion and early source inspection. It is coordination material for
 `_work/`; it is not runtime content, build input, or player-facing canon.
 
-## Project Boundary
+## Project Scope
 
 Nexus is a standalone NetHack 5.0.0 derivative. It should live outside the IER
 repository and should not inherit IER governance, release checks, vocabulary, or

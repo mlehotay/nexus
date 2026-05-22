@@ -10,8 +10,8 @@ NetHack world assumptions deliberately. That requires a clear description of
 the upstream engine as it actually is, not an imagined clean architecture.
 
 The result should be an engineering reference that explains the runtime
-architecture, data flow, ownership boundaries, and hardwired assumptions well
-enough to guide safe Nexus changes.
+architecture, data flow, state ownership, and hardwired assumptions well enough
+to guide safe Nexus changes.
 
 ## Scope
 
@@ -26,8 +26,8 @@ In scope:
 - object and monster initialization, identity tables, and save-format
   assumptions
 - branch, quest, Sokoban, endgame, and other major world-specific special cases
-- Lua/C boundaries and where data becomes compiled engine state
-- major global state structures and how they shape module boundaries
+- Lua/C interfaces and where data becomes compiled engine state
+- major global state structures and how they shape module responsibilities
 - architecture risks for downstream projects that want to replace world
   assumptions
 
@@ -60,7 +60,7 @@ Suggested sections:
 - monsters and actors
 - player state and role/race initialization
 - branches, Quest, Sokoban, endgame, and other world rules
-- save/restore boundaries
+- save/restore interfaces and persistence responsibilities
 - data files, generated files, and compiled tables
 - architecture constraints for world replacement
 - glossary of important structs, globals, and files
@@ -98,7 +98,7 @@ Suggested sections:
    references.
 5. Inspect representative branch/world special cases, starting with Sokoban,
    Quest, Oracle, Gehennom, and endgame.
-6. Document the global state and structs that define architecture boundaries.
+6. Document the global state and structs that define architecture constraints.
 7. Summarize the implications for projects that replace the canonical world.
 
 ## Acceptance Criteria
@@ -106,7 +106,7 @@ Suggested sections:
 - `_work/architecture/vanilla-nethack-architecture.md` exists and is
   source-grounded
 - the document explains startup, topology, level loading, object/monster data,
-  branch rules, and save/restore boundaries at engineering depth
+  branch rules, and save/restore responsibilities at engineering depth
 - claims are tied to specific files or structs where practical
 - the document distinguishes data-driven surfaces from hardwired C assumptions
 - risks and constraints for Nexus architecture are explicitly called out

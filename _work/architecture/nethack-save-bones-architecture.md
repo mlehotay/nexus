@@ -3,7 +3,7 @@
 Date: 2026-05-21
 
 Scope: NetHack 5.0.0 savefiles, level files, bones files, serialization format,
-Lua saved state, and implications for Nexus architecture boundaries.
+Lua saved state, and implications for Nexus architecture.
 
 This report complements:
 
@@ -14,7 +14,7 @@ This report complements:
 ## Summary
 
 NetHack savefiles and bones files are serialized representations of world
-state. They are useful architecture boundaries because they reveal what the
+state. They are useful architecture evidence because they reveal what the
 engine considers durable game state, what is level-local, what is global, and
 what must be reconstructed after loading.
 
@@ -32,8 +32,8 @@ The short answer to the format question:
   normal savefile and bonesfile creation paths currently force historical
   struct-level mode.
 
-For Nexus, this means save/bones boundaries are meaningful scope boundaries,
-but not convenient high-level data APIs. They are lower-level persistence
+For Nexus, this means save and bones files identify meaningful persistence
+scopes, but they are not convenient high-level data APIs. They are lower-level
 contracts tied to C structs and compatibility checks.
 
 ## File Types
@@ -200,7 +200,7 @@ visited but that are not currently resident in memory.
 - exclusion zones;
 - tracks.
 
-That is the natural level-local boundary. If Nexus creates branch-local or
+That is the natural level-local scope. If Nexus creates branch-local or
 dungeon-local rule state in C, save/restore needs a clear decision: is the
 state global game state, level-local state, or derivable from topology/Lua data?
 
@@ -238,8 +238,8 @@ sizes. `validate()` asks `uptodate()` to check these for struct-level files.
 
 This matters for Nexus because changes to durable structs, monster/object
 counts, compile-time features, or architecture-sensitive constants can make old
-saves unusable or dangerous. The save compatibility boundary is stricter than
-the source boundary.
+saves unusable or dangerous. Save compatibility is stricter than source
+compatibility.
 
 ## Bones Files
 
@@ -283,8 +283,8 @@ Bones loading is in `getbones()`:
 - delete the bones file after successful use.
 
 Bones are therefore a cross-game level import format, not merely "a savefile
-where the player died." They are an explicit boundary between one run's world
-state and another run's world state.
+where the player died." They explicitly transfer selected state from one run's
+world into another run's world.
 
 ## Lua State
 
@@ -312,9 +312,9 @@ stores meaningful world state in Lua, it needs rules about:
 - whether state should survive bones import;
 - whether state is authoritative or cache/derived state.
 
-## Save/Bones as Scope Boundaries
+## Save/Bones Persistence Scopes
 
-These boundaries are useful for Nexus planning:
+These scopes are useful for Nexus planning:
 
 Global save state:
 
@@ -367,7 +367,7 @@ For Nexus, this suggests a design discipline:
 1. Treat save/restore as an engine contract, not a gameplay extension point.
 2. Avoid changing durable C structs until the first custom world boots.
 3. If a new Nexus C module owns durable state, add explicit save/restore hooks
-   at the right boundary instead of relying on incidental globals.
+   in the right save or level scope instead of relying on incidental globals.
 4. Keep Lua persistent state small and namespaced.
 5. Decide early whether Nexus branch logic state is global, level-local, or
    derived.

@@ -19,9 +19,9 @@ a Nexus dungeon-logic layer for branch-specific rules
 separate but intersecting content layers for lore, characters, monsters, and items
 ```
 
-This plan should turn that direction into boundaries, module responsibilities,
-open questions, and a sequence of small experiments. It should not replace the
-first milestone of booting one handcrafted custom level.
+This plan should turn that direction into clear module responsibilities,
+interfaces, open questions, and a sequence of small experiments. It should not
+replace the first milestone of booting one handcrafted custom level.
 
 ## Scope
 
@@ -32,7 +32,7 @@ In scope:
 - define what belongs in Lua dungeon/topology data versus C engine code
 - evaluate whether item data can be moved or mirrored into Lua without breaking
   NetHack object initialization, saves, or compile-time assumptions
-- identify a narrow Nexus dungeon-logic module boundary for branch rules such
+- identify a narrow Nexus dungeon-logic module interface for branch rules such
   as Sokoban-style puzzle rules, local traversal constraints, and branch-local
   state
 - define how lore, characters, monsters, items, branches, and level scripts
@@ -47,7 +47,8 @@ Out of scope:
 - procedural generation as an initial requirement
 - redesigning combat, roles, races, alignment, or ascension systems up front
 - importing Floating Eye or IER systems
-- defining final lore canon before the runtime boundaries are understood
+- defining final lore canon before runtime ownership and data flow are
+  understood
 - broad C refactors that are not forced by a tested architecture need
 
 ## Proposed Layers
@@ -83,8 +84,8 @@ Near-term goal:
 
 ### Dungeon Logic Layer
 
-The dungeon logic layer is the proposed new Nexus module boundary for rules that
-belong to places and branches rather than to the global engine.
+The dungeon logic layer is the proposed new Nexus module for rules that belong
+to places and branches rather than to the global engine.
 
 Candidate responsibilities:
 
@@ -159,14 +160,15 @@ runtime code depend on a single monolithic story file.
 ## Investigation Sequence
 
 1. Complete or advance `0004-vanilla-nethack-architecture` enough to identify
-   the relevant upstream boundaries and hardwired assumptions.
+   the relevant upstream interfaces, responsibilities, and hardwired
+   assumptions.
 2. Complete or advance `0002-boot-custom-level` enough to prove the custom
    starting topology.
 3. Inspect existing C special cases for branch-local behavior, starting with
    Sokoban and Quest.
 4. Classify each special case as topology data, level data, branch logic,
    content data, or global engine behavior.
-5. Draft the smallest possible dungeon-logic module boundary.
+5. Draft the smallest possible dungeon-logic module interface.
 6. Prototype one narrow hook only after a real branch rule needs it.
 7. Inspect object and monster initialization paths before deciding whether Lua
    content data can own items or creatures.
@@ -177,14 +179,14 @@ runtime code depend on a single monolithic story file.
 
 - architecture decisions are grounded in
   `_work/architecture/vanilla-nethack-architecture.md`
-- architecture notes identify the preserved C engine boundary
+- architecture notes identify which C engine responsibilities Nexus preserves
 - topology, dungeon logic, content data, and lore layers have clear
   responsibilities
 - branch-local rule examples are traced to current NetHack code
 - item and monster Lua migration questions are answered by source inspection,
   not assumption
 - at least one small experiment validates or rejects the proposed dungeon-logic
-  boundary
+  module interface
 - intentional upstream divergences discovered during the work are recorded in
   `_work/divergences.md`
 - follow-up executable tasks are added to `_work/tasks.csv` when the questions
