@@ -756,3 +756,47 @@ Changed files after merge:
 
 Verification: branch merge and plan-state update only; previous 0006 runtime
 verification remains the relevant check.
+
+---
+
+# codex-024 - Add Nexus Upstream Audit Makefile
+
+**Plan:** workflow maintenance
+**Status:** workflow audit helper added
+**Timestamp:** 2026-05-23
+
+## Changes
+
+Added `_work/nexus.mk` as a workflow-only audit surface for comparing Nexus
+with upstream NetHack without wiring those checks into the NetHack build. The
+file uses `git --no-pager` so audit commands do not invoke an interactive
+pager.
+
+Documented the audit targets in `_work/workflow.md` and `AGENTS.md`:
+
+- `diff` and `diff-stat` compare Nexus with the upstream merge base.
+- `touched` lists files changed by Nexus-only commits.
+- `workflow-check` checks plan and task dashboards for mechanical drift.
+
+No runtime source, build behavior, player-facing data, or upstream NetHack
+divergence changed.
+
+Verification:
+
+- `make -f _work/nexus.mk help`
+- `make -f _work/nexus.mk base`
+- `make -f _work/nexus.mk diff-stat`
+- `make -f _work/nexus.mk touched`
+- `make -f _work/nexus.mk workflow-check`
+
+Follow-up in the same session:
+
+- temporarily added plan `0007-repo-hygiene` so `task-011` had a matching work
+  front, then removed it and filed `task-011` under
+  `0003-configuration-procedures` to keep the workflow lightweight;
+- normalized active 0003 and 0005 task branch names from `work/...` to
+  `work-...`.
+- documented the read-only `summarize` operation in `_work/workflow.md` and
+  `AGENTS.md`.
+- reran `make -f _work/nexus.mk workflow-check`; it passed with zero errors
+  and zero warnings.

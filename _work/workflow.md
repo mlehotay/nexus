@@ -66,6 +66,47 @@ Plans describe work fronts. Tasks describe executable steps.
 - Plan ids are currently numeric within this repository. A repo-prefixed plan
   id scheme, such as `nexus-0006`, is an open workflow decision.
 
+Workflow-only tooling belongs in `_work/` when it is not needed by the
+NetHack build, install, runtime startup, or player-facing data. Keep these
+tools out of upstream NetHack makefiles unless they become part of a deliberate
+Nexus build or release process.
+
+Use `_work/nexus.mk` for local Nexus audit commands:
+
+```sh
+make -f _work/nexus.mk diff-stat
+make -f _work/nexus.mk diff
+make -f _work/nexus.mk touched
+make -f _work/nexus.mk workflow-check
+make -f _work/nexus.mk audit
+```
+
+The default comparison is `nexus` against `upstream/NetHack-5.0` at their
+current merge base. Override `NEXUS_REF` or `UPSTREAM` when auditing a work
+branch or a different upstream ref.
+
+Interpret the targets narrowly:
+
+- `diff` and `diff-stat` show what Nexus currently changes relative to the
+  selected upstream baseline.
+- `touched` shows files changed by commits reachable from `NEXUS_REF` but not
+  from `UPSTREAM`.
+- `workflow-check` checks `_work/plans/plans.csv`, `_work/tasks.csv`, and plan
+  files for mechanical workflow drift.
+- `_work/divergences.md` is the separate human-reviewed ledger of intentional
+  departures from upstream NetHack.
+
+Developer verification helpers, including pty smoke tests, belong in
+`_work/tools/` unless they become required build inputs. They are Nexus
+workflow artifacts, not NetHack runtime divergences, unless they change how
+Nexus builds, installs, starts, or plays.
+
+The workflow checker is intentionally lighter than the Halfbaked dashboard
+system. It enforces only mechanical consistency: CSV headers, duplicate ids,
+known statuses and priorities, task-to-plan resolution, dependency references,
+plan file synchrony, and obvious stale execution state such as open tasks under
+done plans.
+
 ## Codex Sessions
 
 At the start of a code-changing session, Codex should check `git status` and
@@ -73,6 +114,24 @@ state the intended files before editing.
 
 When the user says `wrap up`, `finish the session`, or equivalent, Codex should
 close the session by doing the workflow maintenance, not just summarizing.
+
+When the user says `summarize`, `summarize work`, `summarize open work`, or
+equivalent, Codex should inspect the planning surfaces and report the open work
+without changing files.
+
+Summarize steps:
+
+- check `git status`
+- run `make -f _work/nexus.mk workflow-check` if the target exists, or report
+  that the checker is unavailable
+- read `_work/plans/plans.csv`, `_work/tasks.csv`, and `_work/todo.md`
+- list non-terminal plans, grouped by status
+- list open tasks, grouped by plan/front and including status, priority,
+  branch, dependencies, and notes when useful
+- summarize loose open items from `_work/todo.md` if any are present
+- report dashboard errors or warnings before interpreting the work surface
+- do not close plans, change task state, edit files, or commit as part of
+  `summarize`
 
 Wrap-up steps:
 

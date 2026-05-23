@@ -68,6 +68,8 @@ not define player-facing behavior.
 
 Primary workflow files:
 
+- `_work/nexus.mk` provides workflow-only audit targets for comparing Nexus
+  with upstream NetHack and reviewing recorded divergences.
 - `_work/workflow.md` describes branch, task, Codex, and divergence habits.
 - `_work/tasks.csv` tracks executable tasks.
 - `_work/plans/plans.csv` tracks larger work fronts.
@@ -78,6 +80,8 @@ Primary workflow files:
 Durable Nexus runtime and build files belong in the normal NetHack tree,
 especially `dat/`, `sys/unix/`, and `sys/unix/hints/`. Provisional Nexus
 workflow/setup guides currently live in `_work/`; see `_work/nexus-layout.md`.
+Keep workflow-only audit targets and developer verification helpers in
+`_work/` unless they become required build inputs or player-facing behavior.
 
 Branch rules:
 
@@ -98,8 +102,27 @@ Codex session rules:
 - At the end of a code-changing session, summarize changed files,
   verification, blockers, and any needed `_work/divergences.md` update.
 
+Nexus audit commands:
+
+- Use `make -f _work/nexus.mk diff-stat` and
+  `make -f _work/nexus.mk diff` to review what Nexus currently changes
+  relative to the upstream merge base.
+- Use `make -f _work/nexus.mk touched` to list files touched by Nexus-only
+  commits.
+- Use `make -f _work/nexus.mk workflow-check` to check `_work/plans/plans.csv`,
+  `_work/tasks.csv`, and plan files for mechanical workflow drift.
+- Review `_work/divergences.md` separately as the human-reviewed divergence
+  ledger.
+- The audit makefile is workflow-only. Do not wire it into NetHack's normal
+  makefiles without an explicit Nexus build/release decision.
+
 Session wrap-up command:
 
+- If the user says `summarize`, `summarize work`, `summarize open work`, or
+  equivalent, inspect `_work/plans/plans.csv`, `_work/tasks.csv`, and
+  `_work/todo.md`, run `make -f _work/nexus.mk workflow-check` when available,
+  and report open plans, open tasks, loose todo items, and any dashboard
+  errors. Do not edit files, close work, or commit during this operation.
 - If the user says `wrap up`, `finish the session`, or equivalent, do the
   workflow closeout without waiting for another prompt.
 - Check `git status`.

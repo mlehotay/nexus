@@ -4,9 +4,9 @@ task-002,done,environment,P1,nexus,,confirm Nexus branch is based on NetHack 5.0
 task-003,done,environment,P1,nexus,,configure NetHack local setup with FLEY and project name Nexus
 task-008,done,environment,P1,nexus,,add nexus-local install profile and stable nexus launcher
 task-009,done,environment,P1,nexus,task-008,isolate Nexus runtime options from shared ~/.nethackrc and fix save compression command
-task-010,todo,configuration-procedures,P1,work/0003-configuration-procedures,,fix Windows console fullscreen approximation so it preserves 80x25 geometry while increasing apparent font size
-task-011,todo,repo-hygiene,P2,nexus,,audit and fix accidental executable bits on source files; see _work/todo.md
-task-012,todo,configuration-procedures,P1,work/0003-configuration-procedures,,diagnose and fix tofu boxes in Windows Console Host glyph rendering; see _work/todo.md
+task-010,todo,configuration-procedures,P1,work-0003-configuration-procedures,,fix Windows console fullscreen approximation so it preserves 80x25 geometry while increasing apparent font size
+task-011,todo,configuration-procedures,P2,work-0003-configuration-procedures,,audit and fix accidental executable bits on source files; see _work/todo.md
+task-012,todo,configuration-procedures,P1,work-0003-configuration-procedures,,diagnose and fix tofu boxes in Windows Console Host glyph rendering; see _work/todo.md
 task-004,done,boot-custom-level,P1,work/0002-boot-custom-level,,inspect startup topology and Lua special-level loading from release checkout
 task-005,done,boot-custom-level,P1,work/0002-boot-custom-level,task-004,add minimal Nexus Lua level file
 task-006,done,boot-custom-level,P1,work/0002-boot-custom-level,task-004,identify smallest dungeon.lua topology change for booting into Nexus
@@ -18,8 +18,8 @@ task-016,done,vanilla-nethack-architecture,P1,work/0004-vanilla-nethack-architec
 task-017,done,vanilla-nethack-architecture,P2,nexus,task-013,document compilation cross-compilation and build variability architecture
 task-018,done,nexus-architecture,P1,work/0005-nexus-architecture,task-014,define opt-in NEXUS compile-time flag strategy and guarding rules
 task-019,done,nexus-architecture,P1,work/0005-nexus-architecture,task-018|task-013,map the first boot-custom-level implementation against the NEXUS guarding strategy
-task-020,todo,nexus-architecture,P2,work/0005-nexus-architecture,task-013,inventory canonical topology and branch-rule special cases that Nexus should preserve wrap replace or leave inert
-task-021,todo,nexus-architecture,P2,work/0005-nexus-architecture,task-020,draft first Nexus layer ownership matrix for engine topology dungeon logic content data and lore
+task-020,todo,nexus-architecture,P2,work-0005-nexus-architecture,task-013,inventory canonical topology and branch-rule special cases that Nexus should preserve wrap replace or leave inert
+task-021,todo,nexus-architecture,P2,work-0005-nexus-architecture,task-020,draft first Nexus layer ownership matrix for engine topology dungeon logic content data and lore
 task-022,done,verification-procedure,P1,work-0006-verification-procedure,,document the manual 0002 verification procedure including setup commands expected results and failure signals
 task-023,done,verification-procedure,P1,work-0006-verification-procedure,task-022,choose and implement the smallest pseudo-terminal smoke-test harness for tty boot regression checks
 task-024,done,verification-procedure,P1,work-0006-verification-procedure,task-023,automate or document Nexus-enabled boot regression for nexus-local including handcrafted map Nexus location input and clean quit
