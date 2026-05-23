@@ -58,3 +58,17 @@ Entry shape:
   Nexus binary. The run reached the handcrafted map on dungeon level 1, showed
   the up/down stairs, apple, lamp, and peaceful newt, accepted player input,
   and quit cleanly.
+
+## 2026-05-23 - Local Wizard Mode Authorization
+
+- Plan: `0006-verification-procedure`
+- Files: `sys/unix/sysconf`
+- Upstream assumption: the sample/default Unix sysconf authorizes wizard mode
+  for `root games`.
+- Nexus change: local Nexus development also authorizes user `mlehotay` for
+  wizard mode.
+- Reason: plan 0006 needs developer access to NetHack wizard mode for local
+  topology and runtime inspection. This is local development policy, not
+  gameplay behavior.
+- Verification: install updated `sysconf` into the Nexus local playground and
+  run a pty `nexus -D` smoke check that does not fall back to explore mode.

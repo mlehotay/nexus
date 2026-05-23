@@ -39,7 +39,9 @@ In scope:
 - define how pseudo-terminal testing works for the tty window port
 - verify both sides of the 0002 `NEXUS` guard: Nexus-enabled boot and
   non-Nexus vanilla boot
-- verify that wizard mode is accessible for developer testing
+- verify that wizard mode is accessible for developer testing; deeper wizard
+  mode scenarios can wait until there is behavior worth probing with strategic
+  inputs
 - identify the smallest useful automated or semi-automated harness
 - record practical setup assumptions, command lines, expected outputs, and
   failure signals
@@ -119,9 +121,11 @@ Wizard mode is a developer verification tool for Nexus. It should be available
 in local developer installs so testers can inspect topology, movement, object
 placement, level transitions, and later Nexus-specific world assumptions.
 
-The procedure should verify that `nexus -D` enters actual debug mode rather
-than being denied and downgraded to explore mode. Because the Unix build uses
-`SYSCF`, this depends on the installed `sysconf` `WIZARDS` setting.
+The first procedure should verify only that `nexus -D` enters actual debug mode
+rather than being denied and downgraded to explore mode. Because the Unix build
+uses `SYSCF`, this depends on the installed `sysconf` `WIZARDS` setting.
+Behavioral wizard-mode tests can be added later when Nexus has specific
+developer scenarios to exercise.
 
 Initial wizard-mode checks:
 
@@ -165,3 +169,21 @@ Doing.
 - Added explicit NEXUS-disabled regression targets for `linux-minimal` and
   vanilla Dungeons of Doom startup.
 - Deferred DLB testing from the initial 0002 verification scope.
+- Added `_work/verification.md` and `_work/tools/nh-pty-smoke.py`.
+- Documented that profile switching needs `make clean`; otherwise stale object
+  files can preserve the previous `NEXUS` state.
+- Verified `nexus-local` NEXUS-enabled boot: clean build, install, pty launch,
+  handcrafted level display, `#overview` reports `Nexus`, and `#quit` exits
+  cleanly.
+- Verified `linux-minimal` NEXUS-disabled boot after installing the required
+  `sysconf`: clean build, install, pty launch, `#overview` reports
+  `Dungeons of Doom`, `Nexus` is absent, and `#quit` exits cleanly.
+- Initially found the wizard-mode blocker: `sysconf` allowed only
+  `root games`, so `nexus -D` was denied for the normal developer user and
+  fell back to explore mode.
+- Lowered the pty smoke harness default timeout to 10 seconds.
+- Enabled wizard mode for local user `mlehotay` in `sys/unix/sysconf`; the
+  first wizard-mode check remains access-only.
+- Verified access-only wizard mode: `nexus -D -p Arc -r Hum -@` starts as
+  `wizard`, reaches Dlvl 1, does not fall back to explore mode, and quits
+  cleanly.

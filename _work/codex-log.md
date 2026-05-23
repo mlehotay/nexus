@@ -623,3 +623,83 @@ Changed files:
 Verification: documentation/task update only; no runtime tests run.
 
 No runtime source, data, build behavior, or upstream divergence changed.
+
+---
+
+# codex-021 - Execute Verification Procedure
+
+**Plan:** `0006-verification-procedure`
+**Status:** verification procedure implemented and run; wizard-mode access enabled
+**Timestamp:** 2026-05-23
+
+## Changes
+
+Added the first Nexus verification procedure and pty smoke harness.
+
+Changed runtime/config files:
+
+- `sys/unix/sysconf`
+
+Changed workflow files:
+
+- `_work/verification.md`
+- `_work/tools/nh-pty-smoke.py`
+- `_work/tools/.gitignore`
+- `_work/verification-runs/.gitignore`
+- `_work/plans/0006-verification-procedure.md`
+- `_work/tasks.csv`
+- `_work/divergences.md`
+- `_work/codex-log.md`
+
+The harness launches tty NetHack commands through a pseudo terminal, checks
+expected and forbidden text, can send a follow-up command such as `#overview`,
+handles common pager prompts, sends `#quit`, and writes transient captures
+under `_work/verification-runs/`.
+
+Verification:
+
+- `python3 -m py_compile _work/tools/nh-pty-smoke.py`
+- `sh sys/unix/setup.sh sys/unix/hints/nexus-local`
+- `make clean`
+- `make all`
+- `make install`
+- pty smoke of `~/.local/bin/nexus`
+- `sh sys/unix/setup.sh sys/unix/hints/linux-minimal`
+- `make clean`
+- `make all`
+- `make install`
+- copy `sys/unix/sysconf` into the linux-minimal playground
+- pty smoke of `~/nethack-minimal/games/nethack`
+- pty smoke of `~/.local/bin/nexus -D`
+
+Results:
+
+- NEXUS-enabled `nexus-local` build used `-DNEXUS`, installed successfully,
+  booted to the handcrafted map, `#overview` reported `Nexus`, and `#quit`
+  exited cleanly.
+- NEXUS-disabled `linux-minimal` build compiled without `-DNEXUS`, installed
+  successfully, `#overview` reported `Dungeons of Doom`, `Nexus` was absent,
+  and `#quit` exited cleanly after installing the required `sysconf`.
+- Profile switching requires `make clean`; an early run caught stale object
+  files preserving the previous `NEXUS` state after changing hints.
+- Wizard mode was initially blocked for the normal developer user: installed
+  `sysconf` allowed only `root games`, so `nexus -D` was denied and fell back
+  to explore mode.
+
+Follow-up adjustment:
+
+- lowered the pty smoke default timeout to 10 seconds;
+- clarified that the current smoke test is the first verification procedure,
+  not the complete future test strategy;
+- narrowed wizard-mode verification to access only for now;
+- enabled wizard mode for local user `mlehotay` in `sys/unix/sysconf`;
+- installed the updated `sysconf` into the Nexus local playground;
+- verified `nexus -D -p Arc -r Hum -@` starts as `wizard`, reaches Dlvl 1,
+  does not fall back to explore mode, and quits cleanly.
+
+Tasks `task-022` through `task-027` are marked done. Plan 0006 remains open
+until the user explicitly confirms closure.
+
+Runtime configuration changed: `sys/unix/sysconf` now authorizes local user
+`mlehotay` for wizard mode. The intentional divergence is recorded in
+`_work/divergences.md`.
