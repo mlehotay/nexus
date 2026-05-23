@@ -7,7 +7,11 @@
 #include "dgn_file.h"
 #include "dlb.h"
 
+#ifdef NEXUS
+#define DUNGEON_FILE "nexus-dungeon.lua"
+#else
 #define DUNGEON_FILE "dungeon.lua"
+#endif
 
 #define X_START "x-strt"
 #define X_LOCATE "x-loca"

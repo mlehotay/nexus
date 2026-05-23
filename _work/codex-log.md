@@ -482,3 +482,103 @@ Changed files:
 - `_work/codex-log.md`
 
 No runtime source, data, or build behavior changed.
+
+---
+
+# codex-017 - Record Nexus Compile-Time Flag Strategy
+
+**Plan:** `0005-nexus-architecture`
+**Status:** design note added
+**Timestamp:** 2026-05-21
+
+## Changes
+
+Expanded `_work/architecture/nexus-cflag.md` into a durable design note for using
+`#ifdef NEXUS` without leaking Nexus behavior into vanilla NetHack builds.
+
+The note defines `NEXUS` as an opt-in build feature macro owned by Nexus build
+profiles, recommends guarded switch points in shared NetHack files, reserves
+Nexus behavior for Nexus-owned source/data files, and calls out resource,
+DLB, save, bones, and review-checklist concerns.
+
+Changed files:
+
+- `_work/architecture/nexus-cflag.md`
+- `_work/codex-log.md`
+
+No runtime source, data, or build behavior changed.
+
+---
+
+# codex-018 - Start Nexus Architecture Plan
+
+**Plan:** `0005-nexus-architecture`
+**Status:** plan started; first guard map recorded
+**Timestamp:** 2026-05-22
+
+## Changes
+
+Marked `0005-nexus-architecture` as doing, added executable Nexus architecture
+tasks, registered the moved `nexus-cflag.md` architecture note, and added
+`_work/architecture/nexus-boot-guard-map.md`.
+
+The new guard map connects the first boot-custom-level milestone to the
+`NEXUS` compile-time strategy. It identifies the expected touch points:
+`sys/unix/hints/nexus-local`, `src/dungeon.c`, `sys/unix/Makefile.top`, new
+`dat/nexus-*.lua` files, and `_work/divergences.md`. It recommends keeping the
+first shared C change to a guarded `DUNGEON_FILE` selection only.
+
+Changed files:
+
+- `_work/architecture/README.md`
+- `_work/architecture/nexus-boot-guard-map.md`
+- `_work/plans/0005-nexus-architecture.md`
+- `_work/plans/plans.csv`
+- `_work/tasks.csv`
+- `_work/codex-log.md`
+
+No runtime source, data, or build behavior changed.
+
+---
+
+# codex-019 - Minimal Nexus Boot Build
+
+**Plan:** `0002-boot-custom-level`
+**Status:** first milestone verified; plan left open for user confirmation
+**Timestamp:** 2026-05-22
+
+## Changes
+
+Implemented the minimal opt-in Nexus boot path.
+
+Changed runtime/build files:
+
+- `src/dungeon.c`
+- `sys/unix/hints/nexus-local`
+- `sys/unix/Makefile.top`
+- `dat/nexus-dungeon.lua`
+- `dat/nexus-start.lua`
+
+Changed workflow files:
+
+- `_work/divergences.md`
+- `_work/plans/0002-boot-custom-level.md`
+- `_work/tasks.csv`
+- `_work/codex-log.md`
+
+The Nexus local build now defines `NEXUS`, and `NEXUS` builds load
+`nexus-dungeon.lua` instead of `dungeon.lua`. The Nexus topology registers a
+fixed `nexus-start.lua` special level at dungeon 0 level 1. Non-Nexus builds
+still select `dungeon.lua`.
+
+Verification:
+
+- `sh sys/unix/setup.sh sys/unix/hints/nexus-local`
+- `make all`
+- `make install`
+- pseudo-terminal run of the installed Nexus binary
+
+The installed binary booted to the handcrafted Nexus map, rendered the level in
+tty, accepted input, reported the location as `Nexus`, and quit cleanly.
+`make install` and the runtime check needed approval because they write under
+`~/games/nethack/nexus`.
