@@ -20,3 +20,9 @@ task-018,done,nexus-architecture,P1,work/0005-nexus-architecture,task-014,define
 task-019,done,nexus-architecture,P1,work/0005-nexus-architecture,task-018|task-013,map the first boot-custom-level implementation against the NEXUS guarding strategy
 task-020,todo,nexus-architecture,P2,work/0005-nexus-architecture,task-013,inventory canonical topology and branch-rule special cases that Nexus should preserve wrap replace or leave inert
 task-021,todo,nexus-architecture,P2,work/0005-nexus-architecture,task-020,draft first Nexus layer ownership matrix for engine topology dungeon logic content data and lore
+task-022,done,verification-procedure,P1,work-0006-verification-procedure,,document the manual 0002 verification procedure including setup commands expected results and failure signals
+task-023,done,verification-procedure,P1,work-0006-verification-procedure,task-022,choose and implement the smallest pseudo-terminal smoke-test harness for tty boot regression checks
+task-024,done,verification-procedure,P1,work-0006-verification-procedure,task-023,automate or document Nexus-enabled boot regression for nexus-local including handcrafted map Nexus location input and clean quit
+task-025,done,verification-procedure,P1,work-0006-verification-procedure,task-023,automate or document NEXUS-disabled boot regression for linux-minimal including vanilla dungeon.lua Dungeons of Doom Dlvl 1 startup and clean quit
+task-026,done,verification-procedure,P1,work-0006-verification-procedure,task-023,verify local wizard mode access through sysconf and pty launch or record the blocker
+task-027,done,verification-procedure,P1,work-0006-verification-procedure,task-024|task-025|task-026,run the 0006 procedure against the stacked 0002 branch before 0002 merge and record results

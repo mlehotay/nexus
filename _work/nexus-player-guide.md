@@ -66,11 +66,21 @@ Legacy console breaks modern WSL behavior.
 | Shortcut Name      | `Nexus`                                         |
 | Target             | `C:\Windows\System32\wsl.exe -- bash -lc nexus` |
 | Start In           | `C:\Windows\System32`                           |
-| Font               | `Flexi IBM VGA False`                           |
+| Font               | `Flexi IBM VGA True (437)`                      |
 | Font Size          | `28`                                            |
 | Screen Buffer Size | `80x25`                                         |
 | Window Size        | `80x25`                                         |
 | Legacy Console     | Disabled                                        |
+| Disable Scroll-Forward | Enabled                                  |
+
+`Flexi IBM VGA True (437)` is the current working VGA-style font choice. It is
+preferred over the earlier `Flexi IBM VGA False` setting for this shortcut.
+
+The Windows Console Host setting labeled "Disable Scroll-Forward" should be
+enabled for the dedicated Nexus shortcut. The working understanding is that it
+prevents the console from scrolling past the active screen buffer, which helps
+keep the dedicated 80x25 NetHack view from behaving like a normal scrollback
+terminal.
 
 ---
 
@@ -99,6 +109,7 @@ Launch once, then configure:
 * font
 * geometry
 * QuickEdit disabled
+* Disable Scroll-Forward enabled
 
 Windows stores console settings per shortcut context.
 
