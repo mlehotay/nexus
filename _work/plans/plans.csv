@@ -1,7 +1,7 @@
 id,status,priority,branch,notes
 0001-environment-setup,done,P1,nexus,repository root checkout branch setup FLEY NetHack helper setup and lightweight workflow surfaces
-0002-boot-custom-level,doing,P1,work-0002-boot-custom-level,boot NetHack 5.0.0 into one handcrafted Nexus Lua level with minimal upstream divergence
+0002-boot-custom-level,done,P1,nexus,boot NetHack 5.0.0 into one handcrafted Nexus Lua level with minimal upstream divergence
 0003-configuration-procedures,doing,P1,work-0003-configuration-procedures,establish developer workflow player terminal setup runtime configuration and project procedures
-0004-vanilla-nethack-architecture,doing,P1,work-0004-vanilla-nethack-architecture,produce source-grounded quality-engineering architecture description of vanilla NetHack 5.0.0
+0004-vanilla-nethack-architecture,done,P1,nexus,produce source-grounded quality-engineering architecture description of vanilla NetHack 5.0.0
 0005-nexus-architecture,doing,P2,work-0005-nexus-architecture,depends on 0004; define Nexus engine Lua dungeon logic content and lore architecture with open questions
-0006-verification-procedure,doing,P1,work-0006-verification-procedure,stacked from 0002; define repeatable Nexus verification procedure and test 0002 before merge
+0006-verification-procedure,done,P1,nexus,stacked from 0002; define repeatable Nexus verification procedure and test 0002 before merge

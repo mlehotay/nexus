@@ -153,7 +153,7 @@ developer tools.
 
 ## Status
 
-Doing.
+Done.
 
 ## Progress
 
@@ -187,3 +187,4 @@ Doing.
 - Verified access-only wizard mode: `nexus -D -p Arc -r Hum -@` starts as
   `wizard`, reaches Dlvl 1, does not fall back to explore mode, and quits
   cleanly.
+- User confirmed closure after 0002 and 0006 were merged into `nexus`.

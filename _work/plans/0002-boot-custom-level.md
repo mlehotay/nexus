@@ -45,7 +45,7 @@ Out of scope:
 
 ## Status
 
-Doing.
+Done.
 
 ## Progress
 
@@ -60,5 +60,7 @@ Doing.
 - Verified the installed Nexus binary boots to the handcrafted map and accepts
   basic input in the tty window port.
 
-The plan appears to meet the first milestone, but remains open until the user
-explicitly confirms closure.
+2026-05-23:
+
+- User confirmed closure after the 0002 implementation and the stacked 0006
+  verification branch were merged into `nexus`.

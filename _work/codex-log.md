@@ -726,3 +726,33 @@ Changed files:
 - `_work/codex-log.md`
 
 No runtime source, data, build behavior, or upstream divergence changed.
+
+---
+
+# codex-023 - Merge And Close Plans 0002 0004 And 0006
+
+**Plans:** `0002-boot-custom-level`, `0004-vanilla-nethack-architecture`, `0006-verification-procedure`
+**Status:** branches merged; plan statuses closed with user confirmation
+**Timestamp:** 2026-05-23
+
+## Changes
+
+Merged the completed stacked branches into `nexus`:
+
+- `work-0002-boot-custom-level`
+- `work-0006-verification-procedure`
+
+Closed plans `0002-boot-custom-level` and `0006-verification-procedure` after
+explicit user confirmation. Corrected the stale `plans.csv` status for
+`0004-vanilla-nethack-architecture`, which had already been closed with
+explicit user approval.
+
+Changed files after merge:
+
+- `_work/plans/0002-boot-custom-level.md`
+- `_work/plans/0006-verification-procedure.md`
+- `_work/plans/plans.csv`
+- `_work/codex-log.md`
+
+Verification: branch merge and plan-state update only; previous 0006 runtime
+verification remains the relevant check.
