@@ -45,4 +45,20 @@ Out of scope:
 
 ## Status
 
-Todo.
+Doing.
+
+## Progress
+
+2026-05-22:
+
+- Added an opt-in `NEXUS` build path in the Nexus local hints profile.
+- Added `dat/nexus-dungeon.lua` as a Nexus-owned topology file.
+- Added `dat/nexus-start.lua` as the first handcrafted Nexus level.
+- Guarded `src/dungeon.c` so Nexus builds load `nexus-dungeon.lua` while
+  non-Nexus builds keep `dungeon.lua`.
+- Added Nexus Lua files to the install/DLB data list through `NEXUSDAT`.
+- Verified the installed Nexus binary boots to the handcrafted map and accepts
+  basic input in the tty window port.
+
+The plan appears to meet the first milestone, but remains open until the user
+explicitly confirms closure.

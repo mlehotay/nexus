@@ -161,7 +161,7 @@ runtime code depend on a single monolithic story file.
 
 1. Complete or advance `0004-vanilla-nethack-architecture` enough to identify
    the relevant upstream interfaces, responsibilities, and hardwired
-   assumptions.
+   assumptions. Done through the architecture reports in `_work/architecture/`.
 2. Complete or advance `0002-boot-custom-level` enough to prove the custom
    starting topology.
 3. Inspect existing C special cases for branch-local behavior, starting with
@@ -192,6 +192,34 @@ runtime code depend on a single monolithic story file.
 - follow-up executable tasks are added to `_work/tasks.csv` when the questions
   become concrete implementation work
 
+## Current Focus
+
+The first active architecture decision is how Nexus-specific code is isolated
+from ordinary NetHack builds. `_work/architecture/nexus-cflag.md` records the
+initial strategy:
+
+- `NEXUS` is an opt-in build feature macro defined by Nexus build profiles;
+- shared NetHack files may contain small guarded switch points;
+- Nexus behavior should live in Nexus-owned source or data files;
+- the first likely switch point is loading `nexus-dungeon.lua` instead of
+  `dungeon.lua` from `src/dungeon.c` when `NEXUS` is defined;
+- build/resource lists must be considered alongside C guards so loose-file and
+  future DLB builds can both find Nexus data.
+
+`_work/architecture/nexus-boot-guard-map.md` maps the
+`0002-boot-custom-level` proof of concept against these guarding rules before
+runtime source or data changes.
+
+Near-term outputs for this plan:
+
+1. A boot-custom-level implementation map that identifies every likely touched
+   source, data, and build file and whether each touch is Nexus-owned or a
+   guarded shared-file switch point.
+2. A topology/special-case inventory that classifies canonical systems as
+   preserve, wrap, replace, or leave inert.
+3. A first ownership matrix for engine, topology, dungeon logic, content data,
+   and lore.
+
 ## Status
 
-Todo.
+Doing.

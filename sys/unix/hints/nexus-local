@@ -16,10 +16,12 @@ INSTDIR=$(HACKDIR)
 VARDIR=$(HACKDIR)
 
 CFLAGS=-g -I../include \
-	-DHACKDIR=\"$(HACKDIR)\" \
+	-DNEXUS -DHACKDIR=\"$(HACKDIR)\" \
 	-DSYSCF -DSYSCF_FILE=\"$(HACKDIR)/sysconf\" -DSECURE \
 	-DCONFIG_ERROR_SECURE=FALSE \
 	-DCOMPRESS=\"/bin/gzip\" -DCOMPRESS_EXTENSION=\".gz\"
+
+NEXUSDAT = nexus-dungeon.lua nexus-start.lua
 
 # When building liblua.a, avoid warning that use of tmpnam() should be
 # replaced by mkstemp(); the lua code doesn't use nethack's config.h so this

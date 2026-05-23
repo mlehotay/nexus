@@ -28,3 +28,5 @@ Reports:
 - `nethack-compilation-cross-architecture.md`
 - `nethack-system-window-port-architecture.md`
 - `nethack-save-bones-architecture.md`
+- `nexus-cflag.md`
+- `nexus-boot-guard-map.md`
