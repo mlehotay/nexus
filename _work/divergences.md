@@ -64,11 +64,13 @@ Entry shape:
 - Plan: `0006-verification-procedure`
 - Files: `sys/unix/sysconf`
 - Upstream assumption: the sample/default Unix sysconf authorizes wizard mode
-  for `root games`.
-- Nexus change: local Nexus development also authorizes user `mlehotay` for
-  wizard mode.
+  for Unix login users named `root` or `games`.
+- Nexus change: local Nexus development enables `CHECK_PLNAME=1`, allowing
+  `nexus -u games -D` to authorize wizard mode through the player name while
+  keeping `WIZARDS=root games`.
 - Reason: plan 0006 needs developer access to NetHack wizard mode for local
   topology and runtime inspection. This is local development policy, not
   gameplay behavior.
 - Verification: install updated `sysconf` into the Nexus local playground and
-  run a pty `nexus -D` smoke check that does not fall back to explore mode.
+  run a pty `nexus -u games -D` smoke check that does not fall back to explore
+  mode.

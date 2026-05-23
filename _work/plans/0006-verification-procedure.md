@@ -182,9 +182,10 @@ Done.
   `root games`, so `nexus -D` was denied for the normal developer user and
   fell back to explore mode.
 - Lowered the pty smoke harness default timeout to 10 seconds.
-- Enabled wizard mode for local user `mlehotay` in `sys/unix/sysconf`; the
-  first wizard-mode check remains access-only.
-- Verified access-only wizard mode: `nexus -D -p Arc -r Hum -@` starts as
-  `wizard`, reaches Dlvl 1, does not fall back to explore mode, and quits
-  cleanly.
+- Enabled `CHECK_PLNAME=1` in `sys/unix/sysconf` so wizard mode can use the
+  upstream-style `WIZARDS=root games` list with `nexus -u games -D`; the first
+  wizard-mode check remains access-only.
+- Verified access-only wizard mode: `nexus -u games -D -p Arc -r Hum -@`
+  starts as `wizard`, reaches Dlvl 1, does not fall back to explore mode, and
+  quits cleanly.
 - User confirmed closure after 0002 and 0006 were merged into `nexus`.

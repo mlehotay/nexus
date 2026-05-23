@@ -692,17 +692,21 @@ Follow-up adjustment:
 - clarified that the current smoke test is the first verification procedure,
   not the complete future test strategy;
 - narrowed wizard-mode verification to access only for now;
-- enabled wizard mode for local user `mlehotay` in `sys/unix/sysconf`;
+- enabled wizard mode via `CHECK_PLNAME=1` and `nexus -u games -D`, keeping
+  `WIZARDS=root games` in `sys/unix/sysconf`;
 - installed the updated `sysconf` into the Nexus local playground;
-- verified `nexus -D -p Arc -r Hum -@` starts as `wizard`, reaches Dlvl 1,
-  does not fall back to explore mode, and quits cleanly.
+- verified `nexus -u games -D -p Arc -r Hum -@` starts as `wizard`, reaches
+  Dlvl 1, does not fall back to explore mode, and quits cleanly.
 
 Tasks `task-022` through `task-027` are marked done. Plan 0006 remains open
 until the user explicitly confirms closure.
 
-Runtime configuration changed: `sys/unix/sysconf` now authorizes local user
-`mlehotay` for wizard mode. The intentional divergence is recorded in
-`_work/divergences.md`.
+Runtime configuration changed: `sys/unix/sysconf` now authorizes wizard mode
+through the player name when invoked as `nexus -u games -D`. The intentional
+divergence is recorded in `_work/divergences.md`.
+
+2026-05-23 follow-up: replaced the local-user authorization with the
+`CHECK_PLNAME=1` strategy, so the tracked sysconf no longer names `mlehotay`.
 
 ---
 

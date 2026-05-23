@@ -135,8 +135,9 @@ Nexus testing so developers can inspect topology, level placement, objects, and
 later Nexus-specific world assumptions.
 
 The Nexus local build uses `SYSCF`, so wizard mode access is controlled by the
-installed `sysconf` `WIZARDS` setting. Nexus local development authorizes the
-`mlehotay` user for wizard mode.
+installed `sysconf` `WIZARDS` setting. Nexus local development uses
+`CHECK_PLNAME=1`, so the wizard-mode command supplies the authorized player
+name `games`.
 
 The initial wizard-mode procedure only verifies access. More useful wizard
 mode tests will need strategic inputs once there is behavior worth probing,
@@ -150,11 +151,11 @@ _work/tools/nh-pty-smoke.py \
   --forbid "Entering explore/discovery mode instead" \
   --quit \
   --log _work/verification-runs/wizard-mode.log \
-  -- ~/.local/bin/nexus -D -p Arc -r Hum -@
+  -- ~/.local/bin/nexus -u games -D -p Arc -r Hum -@
 ```
 
-In wizard mode, NetHack changes the player name to `wizard`, so the check uses
-explicit role/race arguments plus `-@` instead of a unique `-u` name.
+In wizard mode, NetHack changes the player name to `wizard` after
+authorization, so the expected greeting remains `Hello wizard`.
 
 ## Failure Signals
 
