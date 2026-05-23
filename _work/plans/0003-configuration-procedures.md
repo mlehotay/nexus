@@ -52,4 +52,18 @@ Out of scope:
 
 ## Status
 
-Todo.
+Doing.
+
+## Progress
+
+2026-05-23:
+
+- Recorded the current working dedicated Windows Console Host shortcut settings
+  in `_work/nexus-player-guide.md`.
+- Updated the VGA-style font to `Flexi IBM VGA True (437)`.
+- Recorded that "Disable Scroll-Forward" is enabled for the dedicated Nexus
+  shortcut, with the current understanding that it prevents scrolling beyond
+  the active 80x25 screen buffer.
+- The terminal setup appears closer to the acceptance criteria, but task
+  closure should wait for explicit confirmation that 80x25 geometry and glyph
+  rendering are both stable in play.

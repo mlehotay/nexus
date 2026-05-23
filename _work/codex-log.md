@@ -703,3 +703,26 @@ until the user explicitly confirms closure.
 Runtime configuration changed: `sys/unix/sysconf` now authorizes local user
 `mlehotay` for wizard mode. The intentional divergence is recorded in
 `_work/divergences.md`.
+
+---
+
+# codex-022 - Record Console Host Settings
+
+**Plan:** `0003-configuration-procedures`
+**Status:** terminal configuration finding recorded
+**Timestamp:** 2026-05-23
+
+## Changes
+
+Recorded the current dedicated Nexus Windows Console Host settings:
+
+- font: `Flexi IBM VGA True (437)`
+- `Disable Scroll-Forward`: enabled
+
+Changed files:
+
+- `_work/nexus-player-guide.md`
+- `_work/plans/0003-configuration-procedures.md`
+- `_work/codex-log.md`
+
+No runtime source, data, build behavior, or upstream divergence changed.
