@@ -10,12 +10,42 @@ worlds; upstream NetHack remains the code base.
 ## Branches
 
 - `nexus` is the integration branch.
-- Work branches should be short and named by front, for example:
-  - `work/0001-environment`
-  - `work/0002-boot-custom-level`
-  - `work/topology-notes`
+- Branch names should identify the plan or task they belong to, but the final
+  Nexus branch naming convention is not settled yet.
+- The current local branches use names such as
+  `work-0002-boot-custom-level` and `work-0006-verification-procedure`.
+  Treat that as existing local state, not as a durable naming rule.
+- Candidate future conventions include:
+  - `0006-verification-procedure`
+  - `plan/0006-verification-procedure`
+  - a repo-prefixed plan id such as `nexus-0006-verification-procedure`
 
 Avoid working directly on upstream branches such as `NetHack-5.0`.
+
+Do not rename existing branches just to tidy naming while active work is in
+progress. Decide the convention deliberately, then migrate branch and plan
+metadata as a small workflow cleanup if needed.
+
+When one plan needs to test or document another plan before that older plan is
+merged, create a stacked branch from the implementation branch being tested.
+For example, the 0006 verification branch may branch from the 0002 boot branch
+so it can exercise the exact 0002 boot path before 0002 reaches `nexus`.
+
+Use stacked branches for verification work when the verification itself is a
+separate concern from the implementation under test:
+
+- keep the implementation branch focused on the runtime or data change
+- keep the verification branch focused on test procedure, harnesses, and
+  workflow documentation
+- record in the plan which branch the verification branch is based on
+- after testing, merge or commit the implementation branch first, then rebase
+  or merge the verification branch onto `nexus` before integrating it
+- if verification finds a runtime defect, fix the defect on the implementation
+  branch when practical, then update the stacked verification branch
+
+Do not use a stacked verification branch to hide implementation changes that
+belong in the original plan. If the test process requires small helper scripts
+or documentation, those belong with the verification plan.
 
 ## Work Surfaces
 
@@ -30,6 +60,11 @@ Plans describe work fronts. Tasks describe executable steps.
 - Add a task for concrete work that can be completed and verified.
 - Keep notes factual. Design intent belongs here until it becomes code or
   player-facing documentation.
+- Verification plans should distinguish the thing being tested from the test
+  procedure itself. A plan can say "test branch X before it merges" without
+  absorbing branch X's runtime changes.
+- Plan ids are currently numeric within this repository. A repo-prefixed plan
+  id scheme, such as `nexus-0006`, is an open workflow decision.
 
 ## Codex Sessions
 

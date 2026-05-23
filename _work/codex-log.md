@@ -582,3 +582,44 @@ The installed binary booted to the handcrafted Nexus map, rendered the level in
 tty, accepted input, reported the location as `Nexus`, and quit cleanly.
 `make install` and the runtime check needed approval because they write under
 `~/games/nethack/nexus`.
+
+---
+
+# codex-020 - Start Verification Procedure Plan
+
+**Plan:** `0006-verification-procedure`
+**Status:** plan started; implementation tasks created
+**Timestamp:** 2026-05-23
+
+## Changes
+
+Created the stacked `0006-verification-procedure` plan to develop repeatable
+testing for the `0002-boot-custom-level` branch before merge.
+
+The workflow now documents stacked verification branches. It also records that
+current local branch names are existing state rather than settled policy, and
+keeps branch naming plus repo-prefixed plan ids as open workflow decisions. The
+plan records that 0006 is stacked from 0002, focuses the first verification
+pass on the actual 0002 `NEXUS` guard behavior, defers DLB testing, and calls
+out wizard-mode access as a developer verification target.
+
+Added tasks for:
+
+- documenting the manual 0002 verification procedure
+- choosing and implementing a pseudo-terminal smoke-test harness
+- testing Nexus-enabled `nexus-local` boot
+- testing NEXUS-disabled `linux-minimal` vanilla boot
+- verifying wizard-mode access
+- running the full 0006 procedure against the stacked 0002 branch
+
+Changed files:
+
+- `_work/workflow.md`
+- `_work/plans/plans.csv`
+- `_work/plans/0006-verification-procedure.md`
+- `_work/tasks.csv`
+- `_work/codex-log.md`
+
+Verification: documentation/task update only; no runtime tests run.
+
+No runtime source, data, build behavior, or upstream divergence changed.
