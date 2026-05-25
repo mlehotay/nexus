@@ -5,3 +5,4 @@ id,status,priority,branch,notes
 0004-vanilla-nethack-architecture,done,P1,nexus,produce source-grounded quality-engineering architecture description of vanilla NetHack 5.0.0
 0005-nexus-architecture,doing,P2,work-0005-nexus-architecture,depends on 0004; define Nexus engine Lua dungeon logic content and lore architecture with open questions
 0006-verification-procedure,done,P1,nexus,stacked from 0002; define repeatable Nexus verification procedure and test 0002 before merge
+0007-nexus-build-world-context,todo,P1,nexus,clean up Nexus build surface and define loaded-world context tied to dungeon topology

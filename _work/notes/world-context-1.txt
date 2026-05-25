@@ -1,0 +1,68 @@
+  Current Assessment
+
+  The current Nexus build does boot into Nexus correctly. I ran the Nexus smoke path and confirmed:
+
+  - ~/.local/bin/nexus starts on Dlvl:1
+  - #overview reports Nexus
+  - Dungeons of Doom does not appear in that smoke path
+  - make -f _work/nexus.mk workflow-check reports 0 error(s), 0 warning(s)
+
+  The big issue is that Nexus currently replaces only the first visible label and first fixed level. The rest of the
+  build is still a mostly intact NetHack world with Nexus grafted onto dungeon 0.
+
+  Where Doom Leaks In
+
+  The main topology file is the largest leak. dat/nexus-dungeon.lua:8 names dungeon 0 Nexus, but it still has the
+  upstream scale and branch graph: Mines, Sokoban, Quest, Fort Ludios, Gehennom, Elemental Planes, Rogue, Oracle, Big
+  Room, Medusa, Castle, Vlad’s Tower, etc. The first level is Nexus, but the world around it is still canonical NetHack.
+
+  The engine also hardwires canonical dungeon identities after loading Lua. src/dungeon.c:1168 resolves "The Quest",
+  "Sokoban", "The Gnomish Mines", "Vlad's Tower", and "The Tutorial" by name into global dungeon numbers. That means
+  those names are not merely content labels; they become engine-facing world concepts.
+
+  Special-level globals are also baked into the public dungeon API. include/dungeon.h:113 exposes checks like
+  Is_astralevel, Is_medusa_level, Is_oracle_level, Is_valley, Is_sanctum, Is_rogue_level, Is_knox, Is_mineend_level, and
+  Is_sokoend_level, plus branch checks like In_sokoban and In_endgame.
+
+  Generation still branches on canonical world assumptions. For example, src/mklev.c:1267 chooses special levels, quest
+  fillers, Gehennom maze behavior, Medusa-adjacent behavior, and regular level generation. src/mklev.c:1472 has Mines/
+  Quest/Gehennom/Tower/Rogue special-case object placement. src/mklev.c:2630 has Fort Ludios placement hardwired against
+  Oracle, Quest entrance, and Medusa depth.
+
+  The build/package surface still includes the whole canonical data set. sys/unix/Makefile.top:96 packages all upstream
+  special levels and quest levels, and sys/unix/Makefile.top:104 includes both dungeon.lua and $(NEXUSDAT). sys/unix/
+  hints/nexus-local:18 correctly defines -DNEXUS, and sys/unix/hints/nexus-local:24 adds only nexus-dungeon.lua nexus-
+  start.lua, but the surrounding package remains broadly vanilla.
+
+  There is also visible lore leakage at runtime. The smoke log shows the startup role text still talks about Moloch, the
+  Amulet of Yendor, Gehennom, and Quetzalcoatl. That leak is not from dungeon.lua; it comes from role/quest/lore data
+  still being upstream.
+
+  Build State
+
+  The current compile-time guard is very narrow and clean: src/dungeon.c:10 switches DUNGEON_FILE to nexus-dungeon.lua
+  only under NEXUS. That is a good first milestone implementation, but it is not yet a Nexus world-context model.
+
+  Right now, “Nexus context” effectively means:
+
+  - this binary was compiled with -DNEXUS
+  - init_dungeons() loads nexus-dungeon.lua
+  - dungeon 0 is named Nexus
+  - level 1 is nexus-start.lua
+
+  It does not yet mean the engine has an explicit loaded-world identity, world ruleset, world feature table, or world-
+  owned topology contract.
+
+  Most Important Next Questions
+
+  The next cleanup should probably separate three concerns:
+
+  1. Build identity: what makes this a Nexus binary/install, and how do we prevent stale or mixed vanilla/Nexus assets?
+  2. Loaded world identity: after init_dungeons() loads a dungeon file, how does the engine know “this is Nexus” without
+     relying only on #ifdef NEXUS?
+  3. Canonical branch compatibility: which upstream concepts must remain inert for now, which should be removed from
+     nexus-dungeon.lua, and which need an engine abstraction before removal?
+
+  My read: the first concrete cleanup target should be dat/nexus-dungeon.lua, not C. It should stop being “vanilla
+  topology with dungeon 0 renamed” and become the smallest topology that still satisfies engine invariants. Then we can
+  see which canonical names are truly required by C and design the world-context hook around real blockers.

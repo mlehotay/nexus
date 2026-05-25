@@ -804,3 +804,41 @@ Follow-up in the same session:
   `AGENTS.md`.
 - reran `make -f _work/nexus.mk workflow-check`; it passed with zero errors
   and zero warnings.
+
+---
+
+# codex-025 - Define Nexus Build World Context Plan
+
+**Plan:** `0007-nexus-build-world-context`
+**Status:** plan and architecture note created
+**Timestamp:** 2026-05-25
+
+## Changes
+
+Assessed the current Nexus build for remaining Dungeons of Doom leakage and
+created plan `0007-nexus-build-world-context` to track build cleanup and
+loaded-world context work. The plan records that Nexus currently boots through
+`nexus-dungeon.lua` and `nexus-start.lua`, but still carries canonical branch,
+special-level, generation, packaging, and lore assumptions.
+
+Added `_work/architecture/nexus-world-context.md` as the narrow architecture
+target for 0007. The note keeps `NEXUS` as the compile-time boundary, proposes
+loaded world metadata in `dat/nexus-dungeon.lua`, describes a small possible
+world-context structure near existing dungeon globals, and separates startup
+resource validation from save/bones compatibility.
+
+The user-provided `_work/notes/world-context-1.txt` assessment note is included
+as supporting session context.
+
+Changed files:
+
+- `_work/architecture/README.md`
+- `_work/architecture/nexus-world-context.md`
+- `_work/notes/world-context-1.txt`
+- `_work/plans/0007-nexus-build-world-context.md`
+- `_work/plans/plans.csv`
+- `_work/codex-log.md`
+
+Verification:
+
+- `make -f _work/nexus.mk workflow-check`
