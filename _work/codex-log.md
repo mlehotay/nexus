@@ -842,3 +842,77 @@ Changed files:
 Verification:
 
 - `make -f _work/nexus.mk workflow-check`
+
+---
+
+# codex-026 - Comment Candidate Gameplay Options
+
+**Plan:** `0003-configuration-procedures`
+**Status:** commented rc guidance added
+**Timestamp:** 2026-05-26
+
+## Changes
+
+Added a commented optional gameplay-preferences block to
+`sys/unix/nexus.nethackrc`, derived from the personal NetHack 5.0.0 turnip rc
+under `_work/options/`. The active Nexus defaults remain console/UI focused;
+the new block documents candidate personal gameplay, status highlight, and menu
+color settings for testing vanilla 5.0.0 before deciding what belongs in Nexus.
+
+No active gameplay option changed, and no new upstream divergence was recorded.
+
+Verification:
+
+- `make -f _work/nexus.mk workflow-check`
+
+---
+
+# codex-027 - Record Towel Window Port Status
+
+**Status:** reference report drafted and moved to `../towel`
+**Timestamp:** 2026-05-26
+
+## Changes
+
+Inspected the historical Floating Eye `towel` branch in `../nethack` and
+drafted current status, risks, and future directions for the split-out towel
+project. The report recommends keeping towel separate from Nexus for now and
+reviving it, if desired, as a fresh NetHack 5.0.0 window-port branch rather
+than importing the old conflicted branch.
+
+The report was moved out of Nexus by the user into the new sibling `../towel`
+project.
+
+Changed files:
+
+- `_work/codex-log.md`
+
+Verification:
+
+- `make -f _work/nexus.mk workflow-check`
+
+---
+
+# codex-028 - Assess NLE5 Window Port Plan
+
+**Status:** assessment note drafted and moved to `../nle5`
+**Timestamp:** 2026-05-26
+
+## Changes
+
+Read `../nle5/_work/nle5-window-port.md` and drafted an assessment of the NLE5
+window-port plan. The note agrees with the core custom-window-port direction,
+identifies gaps around startup, turn synchronization, observation shape,
+threading, runtime data paths, and Python packaging, and recommends a C-only
+NetHack 5.0.0 proof before pybind11 or Gymnasium work.
+
+The assessment was moved out of Nexus by the user into the sibling `../nle5`
+project.
+
+Changed files:
+
+- `_work/codex-log.md`
+
+Verification:
+
+- `make -f _work/nexus.mk workflow-check`
