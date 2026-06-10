@@ -1,0 +1,96 @@
+### spleen NetHack 5.0.0 nethackrc, updated from 3.7.0-turnip config
+#OPTIONS=!bones
+#OPTIONS=pettype:none
+OPTIONS=news,!tutorial,!tips,hitpointbar
+OPTIONS=race:orc,gender:male,role:barbarian
+OPTIONS=catname:Plek,dogname:Plek,horsename:Plek
+#OPTIONS=IBMgraphics,number_pad:0
+OPTIONS=symset:DECgraphics,number_pad:0
+OPTIONS=color,!use_darkgray,hilite_pet
+OPTIONS=time,showrace,boulder:0,fruit:loaf of orcish thistlebread
+OPTIONS=autopickup,pickup_types:.,pickup_burden:burdened,pickup_thrown
+OPTIONS=autoquiver,!autodig,!autoopen,hilite_pile,pile_limit:2
+OPTIONS=autounlock:apply-key+kick+force
+OPTIONS=!implicit_uncursed,lit_corridor,!sparkle,!timed_delay
+OPTIONS=!cmdassist,msg_window:combination,suppress_alert:5.0.0
+OPTIONS=toptenwin,disclose:+i+a+v+g+c+o,scores:5t1a
+MSGTYPE=hide "You swap places with .*"
+
+##############################################################################
+
+OPTIONS=statushilites:10
+
+# HP
+OPTIONS=hilite_status:hitpoints/100%/lightgreen
+OPTIONS=hilite_status:hitpoints/<100%/green
+OPTIONS=hilite_status:hitpoints/<80%/yellow
+OPTIONS=hilite_status:hitpoints/<60%/brown
+OPTIONS=hilite_status:hitpoints/<40%/orange
+OPTIONS=hilite_status:hitpoints/<20%/red&inverse
+OPTIONS=hilite_status:hitpoints-max/up/lightgreen/down/orange
+
+# Pw
+OPTIONS=hilite_status:power/100%/lightblue
+OPTIONS=hilite_status:power/<100%/blue
+OPTIONS=hilite_status:power/<80%/green
+OPTIONS=hilite_status:power/<60%/yellow
+OPTIONS=hilite_status:power/<40%/orange
+OPTIONS=hilite_status:power/<20%/red
+OPTIONS=hilite_status:power-max/up/lightblue/down/orange
+
+# Hunger
+OPTIONS=hilite_status:hunger/satiated/orange
+OPTIONS=hilite_status:hunger/hungry/yellow
+OPTIONS=hilite_status:hunger/weak/orange
+OPTIONS=hilite_status:hunger/fainting/red&inverse/fainted/red&inverse
+
+# Encumbrance
+OPTIONS=hilite_status:carrying-capacity/burdened/yellow
+OPTIONS=hilite_status:carrying-capacity/stressed/orange
+OPTIONS=hilite_status:carrying-capacity/overtaxed/red&inverse
+OPTIONS=hilite_status:carrying-capacity/overloaded/red&inverse
+
+# Status conditions
+OPTIONS=hilite_status:condition/major-troubles/red&inverse
+OPTIONS=hilite_status:condition/stun/orange
+OPTIONS=hilite_status:condition/blind/yellow
+OPTIONS=hilite_status:condition/hallu/magenta
+OPTIONS=hilite_status:condition/deaf/brown
+OPTIONS=hilite_status:condition/lev/cyan
+OPTIONS=hilite_status:condition/fly/lightcyan
+OPTIONS=hilite_status:condition/ride/blue
+
+##############################################################################
+
+OPTIONS=menucolors
+
+# Inventory menu colors
+MENUCOLOR=" water"=blue
+MENUCOLOR=" blessed "=green
+MENUCOLOR=" holy water"=green&bold
+MENUCOLOR="blessed potions? called water"=green&bold
+MENUCOLOR=" cursed "=red
+MENUCOLOR=" unholy "=red
+MENUCOLOR="named (c$|cursed|c )"=red
+MENUCOLOR=" cursed.*(being worn)"=orange&bold
+
+MENUCOLOR="(holding|tricks)"=yellow
+MENUCOLOR="(cancel|CANCEL)"=yellow&underline
+MENUCOLOR="c(hi|o)ckatrice (corpse|egg)"=yellow&underline
+MENUCOLOR="(rusty|burnt|rotted|corroded)"=brown
+MENUCOLOR=":0"=brown
+MENUCOLOR="named empty"=brown
+MENUCOLOR="unpaid"=white
+MENUCOLOR="(no charge)"=magenta
+
+# Zap list menu colors
+#MENUCOLOR=" 0% "=normal
+MENUCOLOR=" [1-9]% "=yellow
+MENUCOLOR=" [12][0-9]% "=yellow
+MENUCOLOR=" [3-5][0-9]% "=brown
+MENUCOLOR=" [6-8][0-9]% "=orange
+MENUCOLOR=" 9[0-9]% "=red
+MENUCOLOR=" 100% "=red
+MENUCOLOR="(gone)"=black
+
+MENUCOLOR="Amulet of Yendor named REAL"=magenta&bold
