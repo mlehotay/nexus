@@ -916,3 +916,29 @@ Changed files:
 Verification:
 
 - `make -f _work/nexus.mk workflow-check`
+
+---
+
+# codex-029 - Record Small-World Design Exploration
+
+**Status:** research note recorded
+**Timestamp:** 2026-06-26
+
+## Changes
+
+Added `_work/notes/ier-level.md` as a speculative design input for a small,
+calm, outdoor Nexus level. The note explores sparse structures, environmental
+memory, time drift, non-hostile creatures, observation, and paths emerging
+from traversal.
+
+The note does not change Nexus runtime behavior or establish IER terminology
+as player-facing Nexus direction. No upstream divergence was introduced.
+
+Changed files:
+
+- `_work/notes/ier-level.md`
+- `_work/codex-log.md`
+
+Verification:
+
+- `make -f _work/nexus.mk workflow-check`
