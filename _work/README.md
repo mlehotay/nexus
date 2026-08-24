@@ -26,6 +26,8 @@ Use it to answer:
 - `plans/plans.csv` tracks larger work fronts.
 - `plans/*.md` stores context, constraints, and acceptance criteria for a plan.
 - `architecture/` stores source-grounded architecture reports and summaries.
+- `integrations/dgamelaunch/` stores migrated technical and boundary records
+  for the upstream-derived dgamelaunch checkout governed by Nexus.
 - `codex-log.md` records concise session summaries when useful.
 - `divergences.md` records intentional departures from upstream NetHack.
 - `workflow.md` describes the working process.
@@ -44,3 +46,5 @@ Use it to answer:
 - Put active Nexus runtime files, world files, and build inputs in the normal
   NetHack tree; see `nexus-layout.md`.
 - Keep this directory lightweight; revise the workflow when it becomes friction.
+- Keep FLEY workflow and agent files out of `../dgamelaunch`; route its FLEY
+  planning, decisions, and verification through Nexus.

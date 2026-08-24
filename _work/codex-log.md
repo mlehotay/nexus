@@ -942,3 +942,37 @@ Changed files:
 Verification:
 
 - `make -f _work/nexus.mk workflow-check`
+
+---
+
+# codex-030 - Receive dgamelaunch Workflow Records
+
+**Status:** records migrated
+**Timestamp:** 2026-08-23 EDT
+
+## Changes
+
+Received the technical context, setup reference, workflow-boundary history,
+legacy workflow copy, and historical Codex record formerly stored under
+`../dgamelaunch/_work/`. Nexus is the FLEY workflow authority for dgamelaunch
+and the Floating Eye NetHack variant; the upstream-derived source checkout no
+longer carries FLEY workflow files.
+
+The Illithid live-data backup runbook moved to
+`../site-ops/_work/notes/illithid-data-preservation.md`, where host operations and
+production safety are authoritative. No NetHack or dgamelaunch source code and
+no production system were changed.
+
+---
+
+# codex-031 - Remove Legacy dgamelaunch Web Example
+
+**Status:** source cleanup recorded
+**Timestamp:** 2026-08-23 EDT
+
+## Changes
+
+Removed `../dgamelaunch/examples/www/` at maintainer direction. The tracked
+legacy example contained `index.html`, `favicon.ico`, and `floatingeye.jpg`.
+The deletion affects repository source only; no Illithid production files or
+services were changed.
