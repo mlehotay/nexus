@@ -976,3 +976,19 @@ Removed `../dgamelaunch/examples/www/` at maintainer direction. The tracked
 legacy example contained `index.html`, `favicon.ico`, and `floatingeye.jpg`.
 The deletion affects repository source only; no Illithid production files or
 services were changed.
+
+---
+
+# codex-032 - Synchronize Canonical Workflow
+
+**Status:** workflow synchronized
+**Timestamp:** 2026-08-23 EDT
+
+## Changes
+
+Installed the canonical FLEY repository workflow at
+`_work/repo-workflow.md`. Preserved Nexus-specific branch, task, audit, and
+divergence rules by moving the former `_work/workflow.md` to
+`_work/local-workflow.md` and updated active references.
+
+No NetHack or dgamelaunch source and no production system changed.

@@ -30,7 +30,9 @@ Use it to answer:
   for the upstream-derived dgamelaunch checkout governed by Nexus.
 - `codex-log.md` records concise session summaries when useful.
 - `divergences.md` records intentional departures from upstream NetHack.
-- `workflow.md` describes the working process.
+- `repo-workflow.md` is the point-of-work copy of the canonical FLEY repository
+  workflow.
+- `local-workflow.md` contains Nexus-specific workflow additions.
 - `install.md` describes the local multi-variant install and launcher
   convention.
 - `nexus-dev-guide.md`, `nexus-layout.md`, and `nexus-player-guide.md` are

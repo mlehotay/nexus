@@ -140,7 +140,7 @@ developer tools.
 
 ## Acceptance Criteria
 
-- `_work/workflow.md` explains how to use stacked verification branches
+- `_work/local-workflow.md` explains how to use stacked verification branches
 - this plan records that 0006 is stacked from the 0002 branch under test
 - a repeatable manual or scripted smoke-test procedure exists for the 0002 boot
   regression targets
@@ -160,7 +160,7 @@ Done.
 2026-05-22:
 
 - Created this plan on a verification branch stacked from the 0002 boot branch.
-- Documented the branch model in `_work/workflow.md`.
+- Documented the branch model in `_work/local-workflow.md`.
 - Captured the codex-0019 boot checks as explicit regression targets.
 
 2026-05-23:

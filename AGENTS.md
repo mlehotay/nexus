@@ -70,7 +70,10 @@ Primary workflow files:
 
 - `_work/nexus.mk` provides workflow-only audit targets for comparing Nexus
   with upstream NetHack and reviewing recorded divergences.
-- `_work/workflow.md` describes branch, task, Codex, and divergence habits.
+- `_work/repo-workflow.md` is the point-of-work copy of the canonical FLEY
+  repository workflow.
+- `_work/local-workflow.md` supplements it with Nexus branch, task, Codex, and
+  divergence habits.
 - `_work/tasks.csv` tracks executable tasks.
 - `_work/plans/plans.csv` tracks larger work fronts.
 - `_work/plans/*.md` stores plan context, constraints, and acceptance criteria.
